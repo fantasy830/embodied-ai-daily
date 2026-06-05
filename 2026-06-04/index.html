@@ -1,93 +1,48 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>具身智能日报 2026-06-04</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<title>日报 2026-06-04</title><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root{--bg:#0B0E14;--card:#141824;--border:#1E2537;--indigo:#6366F1;--cyan:#06B6D4;--neon:#10B981;--text:#E2E8F0;--text2:#94A3B8;--text3:#64748B}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-width:320px}
+body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
 .hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:50px 16px;text-align:center}
 .hero h1{font-size:clamp(1.5em,4vw,2.4em);background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero .date{color:var(--text2);margin-top:8px;font-size:.95em}
 .stats{display:flex;justify-content:center;gap:40px;margin-top:24px;flex-wrap:wrap}
 .stat{text-align:center}.stat .num{font-size:2.2em;font-weight:700}.stat .label{color:var(--text3);font-size:.8em}
-.stat:nth-child(1) .num{color:var(--indigo)}.stat:nth-child(2) .num{color:var(--cyan)}.stat:nth-child(3) .num{color:var(--neon)}
+.stat:nth-child(1) .num{color:var(--indigo)}.stat:nth-child(2) .num{color:var(--cyan)}
 .container{max-width:900px;margin:0 auto;padding:20px 14px}
 h2{color:var(--indigo);border-bottom:2px solid var(--indigo);padding-bottom:6px;margin:30px 0 14px;font-size:1.2em}
-.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:8px}
-.card:hover{border-color:var(--indigo)}
-.card h3{color:#818CF8;margin-bottom:4px;font-size:.95em}.card h3 a{color:#818CF8;text-decoration:none}
-.card .desc{color:var(--text2);margin-bottom:3px;font-size:.88em}.card .meta{color:var(--text3);font-size:.76em}
-.paper-card{border-left:3px solid var(--cyan)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:8px}.card:hover{border-color:var(--indigo)}
 .chart-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:20px;min-height:220px}
-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.8em}th{text-align:left;padding:7px 8px;color:var(--text3);border-bottom:2px solid var(--border)}td{padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text2)}tr:hover td{background:rgba(99,102,241,.05)}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.8em}th{text-align:left;padding:7px 8px;color:var(--text3);border-bottom:2px solid var(--border)}td{padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text2)}
 footer{text-align:center;color:var(--text3);padding:30px;font-size:.78em}footer a{color:#818CF8}
 </style></head><body>
-<div class="hero">
-<h1>📄 具身智能日报</h1>
-<p class="date">2026-06-04</p>
-<div class="stats">
-<div class="stat"><div class="num">21</div><div class="label">arXiv 论文</div></div>
-<div class="stat"><div class="num">2</div><div class="label">研究方向</div></div>
-<div class="stat"><div class="num">cs.RO</div><div class="label">分类</div></div>
-</div></div>
+<div class="hero"><h1>📄 具身智能日报</h1><p class="date">2026-06-04</p>
+<div class="stats"><div class="stat"><div class="num">9</div><div class="label">arXiv 论文</div></div><div class="stat"><div class="num">1</div><div class="label">方向</div></div></div></div>
 <div class="container">
-<h2>📊 方向分布</h2>
-<div class="chart-box"><canvas id="c"></canvas></div>
-<script>new Chart(document.getElementById('c'),{type:'bar',data:{labels:["VLA\u4e0e\u667a\u80fd\u4f53", "\u64cd\u63a7\u4e0e\u611f\u77e5"],datasets:[{data:[6, 15],backgroundColor:['#6366F1','#06B6D4','#10B981'],borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:true,aspectRatio:1.2,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1E2537'},ticks:{color:'#94A3B8',stepSize:1}},y:{grid:{display:false},ticks:{color:'#E2E8F0'}}}}});</script>
-<h2>📄 论文精选</h2>
-<h3 style="color:#10B981;margin:20px 0 10px">📌 VLA与智能体 (6篇)</h3>
+<h2>📊 方向分布</h2><div class="chart-box"><canvas id="c"></canvas></div>
+<script>new Chart(document.getElementById('c'),{type:'bar',data:{labels:["\u4eff\u771f\u5e73\u53f0"],datasets:[{data:[9],backgroundColor:['#6366F1','#06B6D4','#10B981','#F59E0B','#F43F5E','#A855F7','#64748B'],borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:true,aspectRatio:1.2,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1E2537'},ticks:{color:'#94A3B8'}},y:{grid:{display:false},ticks:{color:'#E2E8F0'}}}}});</script>
+<h2>📄 论文</h2><h3 style="color:#10B981;margin:20px 0 10px">📌 仿真平台 (9篇)</h3>
 <div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
 <a href="https://arxiv.org/abs/2606.06491v1" style="color:#818CF8;text-decoration:none;font-size:.92em">TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies</a>
 <p style="color:var(--text3);font-size:.78em;margin-top:4px">Robot manipulation alternates between low-risk transit phases that call for fast execution and high-risk contact stages that demand slow, precise moti</p>
-</div>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.06245v1" style="color:#818CF8;text-decoration:none;font-size:.92em">MPCoT: Reward-Guided Multi-Path Latent Reasoning for Test-Time Scalable Vision-Langua</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">Vision-Language-Action (VLA) policies remain brittle in long-horizon and high-uncertainty control, where one-pass action decoding provides limited inf</p>
-</div>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.06155v1" style="color:#818CF8;text-decoration:none;font-size:.92em">AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Af</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">Vision-Language-Action (VLA) models leverage the rich world knowledge of pretrained vision-language models (VLMs) to enable instruction-following robo</p>
-</div>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.05979v1" style="color:#818CF8;text-decoration:none;font-size:.92em">World-Language-Action Model for Unified World Modeling, Language Reasoning, and Actio</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">We propose world-language-action (WLA) models as a new class of embodied foundation models. WLA takes textual instructions, images, and robot states a</p>
-</div>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.05773v1" style="color:#818CF8;text-decoration:none;font-size:.92em">PiL-World: A Chunk-Wise World Model for VLA Policy-in-the-Loop Evaluation</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">Vision-language-action (VLA) policies operate in a closed loop in real-world robot tasks: a robot observes the scene, executes an action chunk, and co</p>
-</div>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.05737v1" style="color:#818CF8;text-decoration:none;font-size:.92em">Let It Be Simple: One-Step Action Generation for Vision-Language-Action Models</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">Diffusion-based vision-language-action (VLA) models often inherit the image-generation view: actions are generated by iterative denoising. We argue th</p>
-</div>
-<h3 style="color:#10B981;margin:20px 0 10px">📌 操控与感知 (15篇)</h3>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.06493v1" style="color:#818CF8;text-decoration:none;font-size:.92em">HANDOFF: Humanoid Agentic Task-Space Whole-Body Control via Distilled Complementary T</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">For a humanoid robot to be deployed in the real world, the choice of command space (i.e., the interface between task planning and whole-body control) </p>
-</div>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.06323v1" style="color:#818CF8;text-decoration:none;font-size:.92em">VOLT: Vision and Language Trajectory Segmentation for Faster-than-Demonstration Polic</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">Humans often take longer to demonstrate a task than a robot would need to execute it. Rather than learning to replicate the demonstration at the same </p>
-</div>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.06292v1" style="color:#818CF8;text-decoration:none;font-size:.92em">Synthetic Data Generation and Vision-based Wrinkle and Keypoint Detection for Bimanua</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">Robotic manipulation of textiles remains challenging because continuous deformation and self-occlusions hinder the robust visual perception required t</p>
-</div>
-<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.06281v1" style="color:#818CF8;text-decoration:none;font-size:.92em">Multi-Resolution Tactile Imitation Learning for Contact-Rich Robotic Manipulation</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">Touch sensing is beneficial for solving a wide variety of manipulation tasks. While there exists a wide range of tactile sensors with different proper</p>
 </div>
 <div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
 <a href="https://arxiv.org/abs/2606.06218v1" style="color:#818CF8;text-decoration:none;font-size:.92em">TAM: Torque Adaptation Module for Robust Motion Transfer in Manipulation</a>
 <p style="color:var(--text3);font-size:.78em;margin-top:4px">A policy tuned for one robot often behaves differently on another, whether due to the sim-to-real gap, unknown payloads, or the differing dynamics of </p>
 </div>
 <div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
-<a href="https://arxiv.org/abs/2606.06194v1" style="color:#818CF8;text-decoration:none;font-size:.92em">ActiveMimic: Egocentric Video Pretraining with Active Perception</a>
-<p style="color:var(--text3);font-size:.78em;margin-top:4px">Egocentric human video offers a scalable alternative to robot data for pretraining, yet models pretrained on such video consistently underperform thos</p>
+<a href="https://arxiv.org/abs/2606.06155v1" style="color:#818CF8;text-decoration:none;font-size:.92em">AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Af</a>
+<p style="color:var(--text3);font-size:.78em;margin-top:4px">Vision-Language-Action (VLA) models leverage the rich world knowledge of pretrained vision-language models (VLMs) to enable instruction-following robo</p>
+</div>
+<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
+<a href="https://arxiv.org/abs/2606.06130v1" style="color:#818CF8;text-decoration:none;font-size:.92em">Towards Realistic 3D Sonar Simulation</a>
+<p style="color:var(--text3);font-size:.78em;margin-top:4px">As underwater robotics research increasingly addresses complex 3D perception and autonomous navigation, the fidelity of sonar simulation has become a </p>
+</div>
+<div class="card paper-card" style="margin-bottom:6px;padding:14px 18px">
+<a href="https://arxiv.org/abs/2606.06077v1" style="color:#818CF8;text-decoration:none;font-size:.92em">3D Underwater Path Planning via Generative Flow Field Surrogates</a>
+<p style="color:var(--text3);font-size:.78em;margin-top:4px">Autonomous underwater vehicle (AUV) launch and recovery (LAR) into the hull of an advancing host platform requires traversal of a complex, three-dimen</p>
 </div>
 
-<h2>📑 全部 21 篇</h2>
-<div style="overflow-x:auto"><table><tr><th>ID</th><th>标题</th><th>方向</th></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06491v1' style='color:#818CF8'>2606.06491v1</a></td><td>TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies</td><td style='color:#10B981'>VLA与智能体</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06245v1' style='color:#818CF8'>2606.06245v1</a></td><td>MPCoT: Reward-Guided Multi-Path Latent Reasoning for Test-Time Scalabl</td><td style='color:#10B981'>VLA与智能体</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06155v1' style='color:#818CF8'>2606.06155v1</a></td><td>AffordanceVLA: A Vision-Language-Action Model Empowering Action Genera</td><td style='color:#10B981'>VLA与智能体</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05979v1' style='color:#818CF8'>2606.05979v1</a></td><td>World-Language-Action Model for Unified World Modeling, Language Reaso</td><td style='color:#10B981'>VLA与智能体</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05773v1' style='color:#818CF8'>2606.05773v1</a></td><td>PiL-World: A Chunk-Wise World Model for VLA Policy-in-the-Loop Evaluat</td><td style='color:#10B981'>VLA与智能体</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05737v1' style='color:#818CF8'>2606.05737v1</a></td><td>Let It Be Simple: One-Step Action Generation for Vision-Language-Actio</td><td style='color:#10B981'>VLA与智能体</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06493v1' style='color:#818CF8'>2606.06493v1</a></td><td>HANDOFF: Humanoid Agentic Task-Space Whole-Body Control via Distilled </td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06323v1' style='color:#818CF8'>2606.06323v1</a></td><td>VOLT: Vision and Language Trajectory Segmentation for Faster-than-Demo</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06292v1' style='color:#818CF8'>2606.06292v1</a></td><td>Synthetic Data Generation and Vision-based Wrinkle and Keypoint Detect</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06281v1' style='color:#818CF8'>2606.06281v1</a></td><td>Multi-Resolution Tactile Imitation Learning for Contact-Rich Robotic M</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06218v1' style='color:#818CF8'>2606.06218v1</a></td><td>TAM: Torque Adaptation Module for Robust Motion Transfer in Manipulati</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06194v1' style='color:#818CF8'>2606.06194v1</a></td><td>ActiveMimic: Egocentric Video Pretraining with Active Perception</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06139v1' style='color:#818CF8'>2606.06139v1</a></td><td>MotionDisco: Motion Discovery for Extreme Humanoid Loco-Manipulation</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06061v1' style='color:#818CF8'>2606.06061v1</a></td><td>A Conversational Framework for Human-Robot Collaborative Manipulation </td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06049v1' style='color:#818CF8'>2606.06049v1</a></td><td>L-SDPPO: Policy Optimization of Spiking Diffusion Policy for Intra-veh</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06041v1' style='color:#818CF8'>2606.06041v1</a></td><td>Sample-efficient Low-level Motion Planning for Robotic Manipulation Ta</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06033v1' style='color:#818CF8'>2606.06033v1</a></td><td>RealDexUMI: A Wearable Universal Manipulation Interface for Dexterous </td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05960v1' style='color:#818CF8'>2606.05960v1</a></td><td>Towards a Data Flywheel for Embodied Intelligence in Logistics</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05873v1' style='color:#818CF8'>2606.05873v1</a></td><td>LadderMan: Learning Humanoid Perceptive Ladder Climbing</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05848v1' style='color:#818CF8'>2606.05848v1</a></td><td>Visuotactile and Explicitly Force-Controlled Robotic Ultrasound for Ab</td><td style='color:#10B981'>操控与感知</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05660v1' style='color:#818CF8'>2606.05660v1</a></td><td>Safe Embodied AI for Long-horizon Tasks: A Cross-layer Analysis of Rob</td><td style='color:#10B981'>操控与感知</td></tr></table></div>
-</div>
-<footer>🤖 Hermes Agent 日报 · <a href="../archive/">历史归档</a> · arXiv API · cs.RO</footer>
-</body></html>
+<h2>📑 全部 9 篇</h2><div style="overflow-x:auto"><table><tr><th>ID</th><th>标题</th><th>方向</th></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06491v1' style='color:#818CF8'>2606.06491v1</a></td><td>TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies</td><td style='color:#10B981'>仿真平台</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06218v1' style='color:#818CF8'>2606.06218v1</a></td><td>TAM: Torque Adaptation Module for Robust Motion Transfer in Manipulati</td><td style='color:#10B981'>仿真平台</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06155v1' style='color:#818CF8'>2606.06155v1</a></td><td>AffordanceVLA: A Vision-Language-Action Model Empowering Action Genera</td><td style='color:#10B981'>仿真平台</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06130v1' style='color:#818CF8'>2606.06130v1</a></td><td>Towards Realistic 3D Sonar Simulation</td><td style='color:#10B981'>仿真平台</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06077v1' style='color:#818CF8'>2606.06077v1</a></td><td>3D Underwater Path Planning via Generative Flow Field Surrogates</td><td style='color:#10B981'>仿真平台</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06041v1' style='color:#818CF8'>2606.06041v1</a></td><td>Sample-efficient Low-level Motion Planning for Robotic Manipulation Ta</td><td style='color:#10B981'>仿真平台</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05979v1' style='color:#818CF8'>2606.05979v1</a></td><td>World-Language-Action Model for Unified World Modeling, Language Reaso</td><td style='color:#10B981'>仿真平台</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05952v1' style='color:#818CF8'>2606.05952v1</a></td><td>Learning of Robot Safety Policies via Adversarial Synthetic Scenarios</td><td style='color:#10B981'>仿真平台</td></tr><tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05669v1' style='color:#818CF8'>2606.05669v1</a></td><td>Dynamic Multi-Agent Pickup and Delivery in Robotic Cellular Warehousin</td><td style='color:#10B981'>仿真平台</td></tr></table></div></div>
+<footer>🤖 Hermes Agent · <a href="../archive/">归档</a> · arXiv cs.RO</footer></body></html>
