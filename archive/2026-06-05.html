@@ -1,22 +1,103 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>具身智能周报</title>
-<style>:root{--bg:#0B0E14;--card:#141824;--border:#1E2537;--indigo:#6366F1;--indigo-l:#818CF8;--cyan:#06B6D4;--text:#E2E8F0;--text-2:#94A3B8}*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,'PingFang SC','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}.hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:80px 20px;text-align:center;position:relative;overflow:hidden}.hero h1{font-size:3em;background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hero .date{color:var(--text-2);margin-top:12px;font-size:1.1em}.container{max-width:900px;margin:0 auto;padding:40px 20px}h2{color:var(--indigo);border-bottom:2px solid var(--indigo);padding-bottom:8px;margin:40px 0 20px}.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:16px;transition:border-color .2s}.card:hover{border-color:var(--indigo)}.card h3{color:var(--indigo-l);margin-bottom:8px}.card h3 a{color:var(--indigo-l);text-decoration:none}.card .desc{color:var(--text-2);margin-bottom:8px}.card .meta{color:#64748B;font-size:.9em}.stars{color:#F59E0B}footer{text-align:center;color:#64748B;padding:40px;font-size:.85em}footer a{color:var(--indigo-l)}@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.card{animation:fadeUp .6s ease both}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}.card:nth-child(4){animation-delay:.3s}</style></head><body>
+<style>:root{--bg:#0B0E14;--card:#141824;--border:#1E2537;--indigo:#6366F1;--cyan:#06B6D4;--neon:#10B981;--text:#E2E8F0;--text2:#94A3B8;--text3:#64748B}*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,'PingFang SC','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}.hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:80px 20px;text-align:center;position:relative}.hero h1{font-size:3em;background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hero .date{color:var(--text2);margin-top:12px}.stats{display:flex;justify-content:center;gap:40px;margin-top:30px;flex-wrap:wrap}.stat{text-align:center}.stat .num{font-size:2.5em;font-weight:700;color:var(--indigo)}.stat .label{color:var(--text3);font-size:.9em}.container{max-width:900px;margin:0 auto;padding:40px 20px}h2{color:var(--indigo);border-bottom:2px solid var(--indigo);padding-bottom:8px;margin:50px 0 20px}.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:16px;transition:border-color .2s}.card:hover{border-color:var(--indigo)}.card h3{color:#818CF8;margin-bottom:8px}.card h3 a{color:#818CF8;text-decoration:none}.card .desc{color:var(--text2);margin-bottom:8px}.card .meta{color:var(--text3);font-size:.9em}.stars{color:#F59E0B}.paper-card{border-left:3px solid var(--cyan)}footer{text-align:center;color:var(--text3);padding:40px;font-size:.85em}footer a{color:#818CF8}@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.card{animation:fadeUp .6s ease both}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}.card:nth-child(4){animation-delay:.3s}</style></head><body>
 
-<div class="hero"><h1>🤖 具身智能周报</h1><p class="date">2026年第23周 · 05.29 — 06.04</p></div>
+<div class="hero">
+<h1>🤖 具身智能周报</h1>
+<p class="date">2026年第23周 · 05.29 — 06.04</p>
+<div class="stats">
+<div class="stat"><div class="num">6</div><div class="label">GitHub 项目</div></div>
+<div class="stat"><div class="num">5</div><div class="label">arXiv 论文</div></div>
+<div class="stat"><div class="num">2</div><div class="label">研究方向</div></div>
+</div>
+</div>
+
 <div class="container">
 
 <h2>🔥 GitHub 本周热门</h2>
 
-<div class="card"><h3><span class="stars">⭐453</span> <a href="https://github.com/FluxVLA/FluxVLA" target="_blank">FluxVLA/FluxVLA</a></h3><p class="desc">一站式 VLA 工程化平台，从数据采集到真机部署的全流程工具链。</p><p class="meta">🆕 本周新增 · VLA 工程化</p></div>
-<div class="card"><h3><span class="stars">⭐278</span> <a href="https://github.com/keon/awesome-physical-ai" target="_blank">keon/awesome-physical-ai</a></h3><p class="desc">Physical AI 资源汇总：VLA 模型、世界模型、论文与工具集。</p><p class="meta">🆕 本周新增 · 资源索引</p></div>
-<div class="card"><h3><span class="stars">⭐260</span> <a href="https://github.com/OpenHelix-Team/ReconVLA" target="_blank">OpenHelix-Team/ReconVLA</a></h3><p class="desc">通过 3D 重建增强 VLA 空间感知能力。</p><p class="meta">🆕 本周新增 · VLA 感知</p></div>
-<div class="card"><h3><span class="stars">⭐81</span> <a href="https://github.com/ros-claw/rosclaw" target="_blank">ros-claw/rosclaw</a></h3><p class="desc">具身智能 OS 级框架，桥接 LLM 与高频 ROS/VLA 控制。</p><p class="meta">🆕 本周新增 · 基础设施</p></div>
+<div class="card">
+<h3><span class="stars">⭐453</span> <a href="https://github.com/FluxVLA/FluxVLA" target="_blank">FluxVLA/FluxVLA</a></h3>
+<p class="desc">一站式 VLA 工程化平台，从数据采集到真机部署全流程工具链，支持多机器人平台。</p>
+<p class="meta">🆕 本周新增 · VLA 工程化</p>
+</div>
+
+<div class="card">
+<h3><span class="stars">⭐278</span> <a href="https://github.com/keon/awesome-physical-ai" target="_blank">keon/awesome-physical-ai</a></h3>
+<p class="desc">Physical AI 资源汇总：VLA 模型、世界模型、论文与工具集，更新活跃。</p>
+<p class="meta">🆕 本周新增 · 资源索引</p>
+</div>
+
+<div class="card">
+<h3><span class="stars">⭐260</span> <a href="https://github.com/OpenHelix-Team/ReconVLA" target="_blank">OpenHelix-Team/ReconVLA</a></h3>
+<p class="desc">通过 3D 重建增强 VLA 空间感知能力，可作为有效感知器集成到 VLA 框架。</p>
+<p class="meta">🆕 本周新增 · VLA 感知</p>
+</div>
+
+<div class="card">
+<h3><span class="stars">⭐81</span> <a href="https://github.com/ros-claw/rosclaw" target="_blank">ros-claw/rosclaw</a></h3>
+<p class="desc">「具身智能的 AUTOSAR」— OS 级框架桥接 LLM 与高频 ROS/VLA 控制。</p>
+<p class="meta">🆕 本周新增 · 基础设施</p>
+</div>
+
+<div class="card">
+<h3><span class="stars">⭐17</span> <a href="https://github.com/LukeLIN-web/Awesome-VLA" target="_blank">LukeLIN-web/Awesome-VLA</a></h3>
+<p class="desc">VLA 模型、基准、数据集的全面汇总，适合跟踪 VLA 领域最新进展。</p>
+<p class="meta">🆕 本周新增 · 论文汇总</p>
+</div>
+
+<div class="card">
+<h3><span class="stars">⭐16</span> <a href="https://github.com/avikde/vla-pipeline" target="_blank">avikde/vla-pipeline</a></h3>
+<p class="desc">具身推理分层机器人流程 Demo，展示 reasoning → planning → action 流水线。</p>
+<p class="meta">🆕 本周新增 · 流程框架</p>
+</div>
+
+<h2>📄 arXiv 本周新论文</h2>
+
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05395" target="_blank">VASO: 可验证的物理 AI 自进化技能系统</a></h3>
+<p class="desc">将可复用技能作为具身智能体的基本单元，实现开放式指令到长视野物理行为的转换。引入形式化验证确保技能正确性。</p>
+<p class="meta">arXiv: 2606.05395 · 具身智能体 + 形式化验证</p>
+</div>
+
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05248" target="_blank">逆操作：符号规划 + 残差算子学习</a></h3>
+<p class="desc">逆向机器人任务需要符号状态逆转和运动轨迹回退。提出符号规划与残差算子学习结合的逆操作方法。</p>
+<p class="meta">arXiv: 2606.05248 · 操作 + 规划</p>
+</div>
+
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05234" target="_blank">OLIVE: 外骨骼在线低秩增量学习</a></h3>
+<p class="desc">穿戴式外骨骼自适应控制，通过低秩增量学习实现高效个性化适配。</p>
+<p class="meta">arXiv: 2606.05234 · 机器人控制</p>
+</div>
+
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05236" target="_blank">新型四元数关节绳驱冗余机械臂</a></h3>
+<p class="desc">提出四元数关节配置与 FABR 控制方法，适合高障碍物环境下的空间路径遍历。</p>
+<p class="meta">arXiv: 2606.05236 · 机械臂设计</p>
+</div>
+
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05372" target="_blank">Lie 群导航向量场距离函数高效计算</a></h3>
+<p class="desc">向量场方法广泛用于机器人路径跟踪控制，提出 Lie 群上距离函数的高效计算方法。</p>
+<p class="meta">arXiv: 2606.05372 · 运动规划</p>
+</div>
 
 <h2>📋 本周工作</h2>
 
-<div class="card"><h3>🦾 PI05 全量微调训练</h3><p class="desc">lerobot/pi05_libero_base + purple_cap_v2 (50集)，batch=2，10000步全量微调运行中。</p></div>
-<div class="card"><h3>📊 数据集质量分析</h3><p class="desc">lerobot-doctor 检查 SO-101 数据，评分 58/100。</p></div>
-<div class="card"><h3>🔍 VLA 模型调研</h3><p class="desc">xVLA / SmolVLA / PI05 全维度对比，社区案例收集。</p></div>
+<div class="card">
+<h3>🦾 PI05 全量微调训练运行中</h3>
+<p class="desc">服务器 RTX 4090 48GB，基座 lerobot/pi05_libero_base，数据 purple_cap_v2 (50集)，batch=2，10000步全量微调。</p>
+</div>
+<div class="card">
+<h3>📊 数据集质量分析</h3>
+<p class="desc">lerobot-doctor 检查 SO-101 数据（评分 58/100），识别零方差维度和视频帧数偏差。</p>
+</div>
+<div class="card">
+<h3>🔍 VLA 模型调研 + 周报系统搭建</h3>
+<p class="desc">xVLA/SmolVLA/PI05 全维度对比，部署 embodied-ai-weekly 自动化周报。</p>
+</div>
 
 </div>
-<footer>🤖 由 Hermes Agent 自动生成 · <a href="../archive/">历史归档</a></footer>
+<footer>🤖 由 Hermes Agent 自动生成 · <a href="../archive/">历史归档</a> · 来源: GitHub / arXiv</footer>
 </body></html>
