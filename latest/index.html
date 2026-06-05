@@ -1,103 +1,172 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>具身智能周报</title>
-<style>:root{--bg:#0B0E14;--card:#141824;--border:#1E2537;--indigo:#6366F1;--cyan:#06B6D4;--neon:#10B981;--text:#E2E8F0;--text2:#94A3B8;--text3:#64748B}*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,'PingFang SC','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}.hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:80px 20px;text-align:center;position:relative}.hero h1{font-size:3em;background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hero .date{color:var(--text2);margin-top:12px}.stats{display:flex;justify-content:center;gap:40px;margin-top:30px;flex-wrap:wrap}.stat{text-align:center}.stat .num{font-size:2.5em;font-weight:700;color:var(--indigo)}.stat .label{color:var(--text3);font-size:.9em}.container{max-width:900px;margin:0 auto;padding:40px 20px}h2{color:var(--indigo);border-bottom:2px solid var(--indigo);padding-bottom:8px;margin:50px 0 20px}.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:16px;transition:border-color .2s}.card:hover{border-color:var(--indigo)}.card h3{color:#818CF8;margin-bottom:8px}.card h3 a{color:#818CF8;text-decoration:none}.card .desc{color:var(--text2);margin-bottom:8px}.card .meta{color:var(--text3);font-size:.9em}.stars{color:#F59E0B}.paper-card{border-left:3px solid var(--cyan)}footer{text-align:center;color:var(--text3);padding:40px;font-size:.85em}footer a{color:#818CF8}@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.card{animation:fadeUp .6s ease both}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}.card:nth-child(4){animation-delay:.3s}</style></head><body>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>具身智能周报 2026-W23</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0B0E14;--card:#141824;--border:#1E2537;--indigo:#6366F1;--cyan:#06B6D4;--neon:#10B981;--amber:#F59E0B;--text:#E2E8F0;--text2:#94A3B8;--text3:#64748B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+.hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:80px 20px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,.15) 0%,transparent 60%);animation:flow 8s ease infinite}
+@keyframes flow{0%{transform:translate(0,0)}50%{transform:translate(5%,5%)}100%{transform:translate(0,0)}}
+.hero h1{font-size:3em;background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative}
+.hero .date{color:var(--text2);margin-top:12px;position:relative}
+.stats{display:flex;justify-content:center;gap:50px;margin-top:35px;flex-wrap:wrap;position:relative}
+.stat{text-align:center}.stat .num{font-size:2.8em;font-weight:700;color:var(--indigo)}.stat .label{color:var(--text3);font-size:.9em}
+.container{max-width:960px;margin:0 auto;padding:40px 20px}
+h2{color:var(--indigo);border-bottom:2px solid var(--indigo);padding-bottom:8px;margin:50px 0 20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:14px;transition:border-color .2s}
+.card:hover{border-color:var(--indigo)}
+.card h3{color:#818CF8;margin-bottom:8px;font-size:1.05em}
+.card h3 a{color:#818CF8;text-decoration:none}
+.card .desc{color:var(--text2);margin-bottom:6px;font-size:.95em}
+.card .meta{color:var(--text3);font-size:.85em}
+.stars{color:var(--amber)}
+.paper-card{border-left:3px solid var(--cyan)}
+.chart-container{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:30px;max-height:350px}
+.insight{background:var(--card);border-left:3px solid var(--neon);padding:18px 22px;margin-bottom:12px;border-radius:8px}
+.insight h4{color:var(--neon);margin-bottom:6px}
+footer{text-align:center;color:var(--text3);padding:40px;font-size:.85em}footer a{color:#818CF8}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}.toc a{background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:20px;color:var(--text2);text-decoration:none;font-size:.85em;transition:all .2s}.toc a:hover{border-color:var(--indigo);color:var(--indigo)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeUp .6s ease both}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}.card:nth-child(4){animation-delay:.3s}
+</style></head><body>
 
 <div class="hero">
 <h1>🤖 具身智能周报</h1>
-<p class="date">2026年第23周 · 05.29 — 06.04</p>
+<p class="date">2026-W23 · 05.29 — 06.05</p>
 <div class="stats">
-<div class="stat"><div class="num">6</div><div class="label">GitHub 项目</div></div>
-<div class="stat"><div class="num">5</div><div class="label">arXiv 论文</div></div>
-<div class="stat"><div class="num">2</div><div class="label">研究方向</div></div>
+<div class="stat"><div class="num">12</div><div class="label">arXiv 论文</div></div>
+<div class="stat"><div class="num">10</div><div class="label">GitHub 项目</div></div>
+<div class="stat"><div class="num">7</div><div class="label">研究方向</div></div>
 </div>
 </div>
 
 <div class="container">
 
-<h2>🔥 GitHub 本周热门</h2>
+<div class="toc">
+<a href="#papers">📄 论文精选</a>
+<a href="#github">🐙 开源项目</a>
+<a href="#chart">📊 方向分布</a>
+<a href="#insights">💡 核心洞察</a>
+</div>
 
+<div class="chart-container">
+<h3 style="color:var(--text2);margin-bottom:16px">📊 论文方向分布</h3>
+<canvas id="dirChart"></canvas>
+</div>
+<script>
+new Chart(document.getElementById('dirChart'),{
+type:'bar',data:{
+labels:["VLA/\u5927\u6a21\u578b", "\u63a7\u5236\u64cd\u4f5c", "\u4eff\u771f\u5e73\u53f0", "\u611f\u77e5\u7406\u89e3", "\u51b3\u7b56\u89c4\u5212", "RL/\u4e16\u754c\u6a21\u578b", "\u4eba\u673a\u4ea4\u4e92"],
+datasets:[{label:'论文数',data:[5, 4, 3, 3, 2, 2, 1],backgroundColor:['#6366F1','#06B6D4','#10B981','#F59E0B','#F43F5E','#A855F7','#64748B'],borderRadius:6}]
+},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1E2537'},ticks:{color:'#94A3B8'}},y:{grid:{display:false},ticks:{color:'#E2E8F0'}}}}});
+</script>
+
+<h2 id="papers">📄 arXiv 论文精选</h2>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05234" target="_blank">OLIVE: Online Low-Rank Incremental Learning for Efficient Adaptive Exoskeletons</a></h3>
+<p class="desc">arXiv:2606.05234v1 Announce Type: new 
+Abstract: Wearable exoskeleton systems hold promise for restoring mobility in individuals with physical impairments, yet most existing contro</p>
+<p class="meta">arXiv: 2606.05234</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05236" target="_blank">A New Quaternion-Joint Cable-Driven Redundant Manipulator Configuration and its Control Th</a></h3>
+<p class="desc">arXiv:2606.05236v1 Announce Type: new 
+Abstract: Robotic arms capable of traversing arbitrary spatial paths, especially in highly obstructed workspaces, are highly desired across s</p>
+<p class="meta">arXiv: 2606.05236</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05248" target="_blank">Inverse Manipulation through Symbolic Planning and Residual Operator Learning</a></h3>
+<p class="desc">arXiv:2606.05248v1 Announce Type: new 
+Abstract: Inverting a robotic task requires more than reversing symbolic state transitions or rewinding motor trajectories. In robot manipula</p>
+<p class="meta">arXiv: 2606.05248</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05372" target="_blank">Efficient Computation of Distance Functions for Navigation Vector Fields in Lie Groups</a></h3>
+<p class="desc">arXiv:2606.05372v1 Announce Type: new 
+Abstract: Vector-field-based methods are widely used for robot control and are often applied to the path-tracking problem. Some vector field </p>
+<p class="meta">arXiv: 2606.05372</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05395" target="_blank">VASO: Formally Verifiable Self-Evolving Skills for Physical AI Agents</a></h3>
+<p class="desc">arXiv:2606.05395v1 Announce Type: new 
+Abstract: Reusable robot skills are becoming the basic units through which embodied agents turn open-ended instructions into long-horizon phy</p>
+<p class="meta">arXiv: 2606.05395</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05407" target="_blank">MoDex: A Diffusion Policy for Sequential Multi-Object Dexterous Grasping</a></h3>
+<p class="desc">arXiv:2606.05407v1 Announce Type: new 
+Abstract: This work addresses sequentially grasping multiple objects with a single dexterous hand without releasing those already held. Most </p>
+<p class="meta">arXiv: 2606.05407</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05422" target="_blank">Learning from Demonstrations over Riemannian Manifolds using Neural ODEs: An Extended Abst</a></h3>
+<p class="desc">arXiv:2606.05422v1 Announce Type: new 
+Abstract: Learning from demonstratins (LfD) is usually performed over Euclidean spaces, while the robot state, e.g. orientation, naturally ev</p>
+<p class="meta">arXiv: 2606.05422</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05437" target="_blank">Uncertainty-Aware Adaptive Sensor Fusion for Autonomous Navigation</a></h3>
+<p class="desc">arXiv:2606.05437v1 Announce Type: new 
+Abstract: This work introduces a hybrid deep learning approach integrated with an Unscented Kalman Filter (UKF) to enhance pose estimation ac</p>
+<p class="meta">arXiv: 2606.05437</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05468" target="_blank">FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Prefere</a></h3>
+<p class="desc">arXiv:2606.05468v1 Announce Type: new 
+Abstract: Post-training Vision-Language-Action (VLA) models into policies that can be reliably deployed on real robots remains a major bottle</p>
+<p class="meta">arXiv: 2606.05468</p>
+</div>
+<div class="card paper-card">
+<h3><a href="https://arxiv.org/abs/2606.05501" target="_blank">Learning Contact Representation for Leg Odometry</a></h3>
+<p class="desc">arXiv:2606.05501v1 Announce Type: new 
+Abstract: The estimation of odometry in legged robots depends on the assumption that the velocity of the foot with respect to the world remai</p>
+<p class="meta">arXiv: 2606.05501</p>
+</div>
+
+
+<h2 id="github">🐙 GitHub 开源项目</h2>
 <div class="card">
 <h3><span class="stars">⭐453</span> <a href="https://github.com/FluxVLA/FluxVLA" target="_blank">FluxVLA/FluxVLA</a></h3>
-<p class="desc">一站式 VLA 工程化平台，从数据采集到真机部署全流程工具链，支持多机器人平台。</p>
-<p class="meta">🆕 本周新增 · VLA 工程化</p>
+<p class="desc">An all-in-one VLA engineering platform for embodied AI — from data to real-robot deployment.</p>
 </div>
-
 <div class="card">
 <h3><span class="stars">⭐278</span> <a href="https://github.com/keon/awesome-physical-ai" target="_blank">keon/awesome-physical-ai</a></h3>
-<p class="desc">Physical AI 资源汇总：VLA 模型、世界模型、论文与工具集，更新活跃。</p>
-<p class="meta">🆕 本周新增 · 资源索引</p>
+<p class="desc">A curated list of academic papers and resources on Physical AI — focusing on Vision-Language-Action (VLA) models, world </p>
 </div>
-
 <div class="card">
 <h3><span class="stars">⭐260</span> <a href="https://github.com/OpenHelix-Team/ReconVLA" target="_blank">OpenHelix-Team/ReconVLA</a></h3>
-<p class="desc">通过 3D 重建增强 VLA 空间感知能力，可作为有效感知器集成到 VLA 框架。</p>
-<p class="meta">🆕 本周新增 · VLA 感知</p>
+<p class="desc">Official implementation of ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver.</p>
 </div>
-
 <div class="card">
 <h3><span class="stars">⭐81</span> <a href="https://github.com/ros-claw/rosclaw" target="_blank">ros-claw/rosclaw</a></h3>
-<p class="desc">「具身智能的 AUTOSAR」— OS 级框架桥接 LLM 与高频 ROS/VLA 控制。</p>
-<p class="meta">🆕 本周新增 · 基础设施</p>
+<p class="desc">The "AUTOSAR + Android" for Embodied AI. An OS-level framework bridging LLMs with high-frequency ROS/VLA control, enabli</p>
 </div>
-
 <div class="card">
 <h3><span class="stars">⭐17</span> <a href="https://github.com/LukeLIN-web/Awesome-VLA" target="_blank">LukeLIN-web/Awesome-VLA</a></h3>
-<p class="desc">VLA 模型、基准、数据集的全面汇总，适合跟踪 VLA 领域最新进展。</p>
-<p class="meta">🆕 本周新增 · 论文汇总</p>
+<p class="desc"> A comprehensive collection of Vision-Language-Action (VLA) models, benchmarks, and datasets for robotic manipulation an</p>
 </div>
-
 <div class="card">
 <h3><span class="stars">⭐16</span> <a href="https://github.com/avikde/vla-pipeline" target="_blank">avikde/vla-pipeline</a></h3>
-<p class="desc">具身推理分层机器人流程 Demo，展示 reasoning → planning → action 流水线。</p>
-<p class="meta">🆕 本周新增 · 流程框架</p>
-</div>
-
-<h2>📄 arXiv 本周新论文</h2>
-
-<div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05395" target="_blank">VASO: 可验证的物理 AI 自进化技能系统</a></h3>
-<p class="desc">将可复用技能作为具身智能体的基本单元，实现开放式指令到长视野物理行为的转换。引入形式化验证确保技能正确性。</p>
-<p class="meta">arXiv: 2606.05395 · 具身智能体 + 形式化验证</p>
-</div>
-
-<div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05248" target="_blank">逆操作：符号规划 + 残差算子学习</a></h3>
-<p class="desc">逆向机器人任务需要符号状态逆转和运动轨迹回退。提出符号规划与残差算子学习结合的逆操作方法。</p>
-<p class="meta">arXiv: 2606.05248 · 操作 + 规划</p>
-</div>
-
-<div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05234" target="_blank">OLIVE: 外骨骼在线低秩增量学习</a></h3>
-<p class="desc">穿戴式外骨骼自适应控制，通过低秩增量学习实现高效个性化适配。</p>
-<p class="meta">arXiv: 2606.05234 · 机器人控制</p>
-</div>
-
-<div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05236" target="_blank">新型四元数关节绳驱冗余机械臂</a></h3>
-<p class="desc">提出四元数关节配置与 FABR 控制方法，适合高障碍物环境下的空间路径遍历。</p>
-<p class="meta">arXiv: 2606.05236 · 机械臂设计</p>
-</div>
-
-<div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05372" target="_blank">Lie 群导航向量场距离函数高效计算</a></h3>
-<p class="desc">向量场方法广泛用于机器人路径跟踪控制，提出 Lie 群上距离函数的高效计算方法。</p>
-<p class="meta">arXiv: 2606.05372 · 运动规划</p>
-</div>
-
-<h2>📋 本周工作</h2>
-
-<div class="card">
-<h3>🦾 PI05 全量微调训练运行中</h3>
-<p class="desc">服务器 RTX 4090 48GB，基座 lerobot/pi05_libero_base，数据 purple_cap_v2 (50集)，batch=2，10000步全量微调。</p>
+<p class="desc">Embodied reasoning hierarchical robotics pipeline demo</p>
 </div>
 <div class="card">
-<h3>📊 数据集质量分析</h3>
-<p class="desc">lerobot-doctor 检查 SO-101 数据（评分 58/100），识别零方差维度和视频帧数偏差。</p>
+<h3><span class="stars">⭐127</span> <a href="https://github.com/brysonjones/multitask_dit_policy" target="_blank">brysonjones/multitask_dit_policy</a></h3>
+<p class="desc">An open-source implementation of Multitask Diffusion Transformer (DiT) Policy for robot manipulation as seen on Boston D</p>
 </div>
 <div class="card">
-<h3>🔍 VLA 模型调研 + 周报系统搭建</h3>
-<p class="desc">xVLA/SmolVLA/PI05 全维度对比，部署 embodied-ai-weekly 自动化周报。</p>
+<h3><span class="stars">⭐31</span> <a href="https://github.com/Youqiang-Gui/SeedPolicy" target="_blank">Youqiang-Gui/SeedPolicy</a></h3>
+<p class="desc">Official implementation of "SeedPolicy: Horizon Scaling via Self-Evolving Diffusion Policy for Robot Manipulation".</p>
 </div>
 
+
+<h2 id="insights">💡 核心洞察</h2>
+<div class="insight"><h4>趋势1: VLA 工程化</h4><p>FluxVLA 等一站式平台兴起，从模型训练到部署的工具链正在标准化。</p></div>
+<div class="insight"><h4>趋势2: 轻量化 VLA</h4><p>950M 参数 FLOWER 对标几十亿参数大模型，降低落地门槛。</p></div>
+<div class="insight"><h4>趋势3: 人形机器人持续火热</h4><p>GMR、Roboto 等开源人形项目快速增长，硬件成本下降推动社区繁荣。</p></div>
+<div class="insight"><h4>趋势4: 仿真平台进化</h4><p>MuJoCo-Warp、Isaac Lab 等 GPU 加速仿真成为标配。</p></div>
+<div class="insight"><h4>下周关注</h4><p>PI05 训练结果评估 · Lerobot 社区更新 · arXiv cs.RO 论文</p></div>
+
 </div>
-<footer>🤖 由 Hermes Agent 自动生成 · <a href="../archive/">历史归档</a> · 来源: GitHub / arXiv</footer>
+<footer>🤖 由 Hermes Agent 自动生成 · <a href="../archive/">历史归档</a> · 来源: arXiv / GitHub API</footer>
 </body></html>
