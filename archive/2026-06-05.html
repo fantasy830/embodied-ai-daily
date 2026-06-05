@@ -2,130 +2,127 @@
 <title>具身智能周报 2026-W23</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#0B0E14;--card:#141824;--border:#1E2537;--indigo:#6366F1;--cyan:#06B6D4;--neon:#10B981;--amber:#F59E0B;--text:#E2E8F0;--text2:#94A3B8;--text3:#64748B}
+:root{--bg:#0B0E14;--card:#141824;--border:#1E2537;--indigo:#6366F1;--cyan:#06B6D4;--neon:#10B981;--amber:#F59E0B;--rose:#F43F5E;--text:#E2E8F0;--text2:#94A3B8;--text3:#64748B}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,'PingFang SC','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
 .hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:80px 20px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,.15) 0%,transparent 60%);animation:flow 8s ease infinite}
-@keyframes flow{0%{transform:translate(0,0)}50%{transform:translate(5%,5%)}100%{transform:translate(0,0)}}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);animation:flow 8s ease infinite}
+@keyframes flow{0%{transform:translate(0,0)}50%{transform:translate(5%,3%)}100%{transform:translate(0,0)}}
 .hero h1{font-size:3em;background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative}
-.hero .date{color:var(--text2);margin-top:12px;position:relative}
-.stats{display:flex;justify-content:center;gap:50px;margin-top:35px;flex-wrap:wrap;position:relative}
-.stat{text-align:center}.stat .num{font-size:2.8em;font-weight:700;color:var(--indigo)}.stat .label{color:var(--text3);font-size:.9em}
+.hero .date{color:var(--text2);margin-top:12px;position:relative;font-size:1.1em}
+.stats{display:flex;justify-content:center;gap:60px;margin-top:40px;flex-wrap:wrap;position:relative}
+.stat{text-align:center}.stat .num{font-size:2.8em;font-weight:700}.stat .label{color:var(--text3);font-size:.9em;margin-top:4px}
+.stat:nth-child(1) .num{color:var(--indigo)}.stat:nth-child(2) .num{color:var(--cyan)}.stat:nth-child(3) .num{color:var(--neon)}
 .container{max-width:960px;margin:0 auto;padding:40px 20px}
-h2{color:var(--indigo);border-bottom:2px solid var(--indigo);padding-bottom:8px;margin:50px 0 20px}
+h2{color:var(--indigo);border-bottom:2px solid var(--indigo);padding-bottom:8px;margin:50px 0 20px;font-size:1.4em}
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:14px;transition:border-color .2s}
 .card:hover{border-color:var(--indigo)}
-.card h3{color:#818CF8;margin-bottom:8px;font-size:1.05em}
+.card h3{color:#818CF8;margin-bottom:8px;font-size:1.02em}
 .card h3 a{color:#818CF8;text-decoration:none}
-.card .desc{color:var(--text2);margin-bottom:6px;font-size:.95em}
-.card .meta{color:var(--text3);font-size:.85em}
+.card .desc{color:var(--text2);margin-bottom:6px;font-size:.93em}
+.card .meta{color:var(--text3);font-size:.82em}
 .stars{color:var(--amber)}
 .paper-card{border-left:3px solid var(--cyan)}
-.chart-container{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:30px;max-height:350px}
-.insight{background:var(--card);border-left:3px solid var(--neon);padding:18px 22px;margin-bottom:12px;border-radius:8px}
-.insight h4{color:var(--neon);margin-bottom:6px}
+.chart-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:30px;height:320px}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0}.toc a{background:var(--card);border:1px solid var(--border);padding:6px 16px;border-radius:20px;color:var(--text2);text-decoration:none;font-size:.85em}.toc a:hover{border-color:var(--indigo);color:var(--indigo)}
+.insight{background:var(--card);border-left:3px solid var(--neon);padding:16px 22px;margin-bottom:10px;border-radius:8px}
+.insight h4{color:var(--neon);margin-bottom:4px;font-size:.95em}
+.insight p{color:var(--text2);font-size:.9em}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88em}
+th{text-align:left;padding:10px 12px;color:var(--text3);border-bottom:2px solid var(--border)}
+td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text2)}
+tr:hover td{background:rgba(99,102,241,.05)}
+details{margin:10px 0}details summary{color:var(--indigo);cursor:pointer;padding:8px 0;font-size:.95em}
 footer{text-align:center;color:var(--text3);padding:40px;font-size:.85em}footer a{color:#818CF8}
-.toc{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}.toc a{background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:20px;color:var(--text2);text-decoration:none;font-size:.85em;transition:all .2s}.toc a:hover{border-color:var(--indigo);color:var(--indigo)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.card{animation:fadeUp .6s ease both}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}.card:nth-child(4){animation-delay:.3s}
-</style></head><body>
+.card{animation:fadeUp .6s ease both}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}</style></head><body>
 
 <div class="hero">
 <h1>🤖 具身智能周报</h1>
 <p class="date">2026-W23 · 05.29 — 06.05</p>
 <div class="stats">
 <div class="stat"><div class="num">12</div><div class="label">arXiv 论文</div></div>
-<div class="stat"><div class="num">10</div><div class="label">GitHub 项目</div></div>
-<div class="stat"><div class="num">7</div><div class="label">研究方向</div></div>
+<div class="stat"><div class="num">8</div><div class="label">GitHub 项目</div></div>
+<div class="stat"><div class="num">2</div><div class="label">研究方向</div></div>
 </div>
 </div>
 
 <div class="container">
 
 <div class="toc">
-<a href="#papers">📄 论文精选</a>
-<a href="#github">🐙 开源项目</a>
 <a href="#chart">📊 方向分布</a>
+<a href="#papers">📄 论文精选</a>
+<a href="#all">📋 全部论文</a>
+<a href="#github">🐙 开源项目</a>
 <a href="#insights">💡 核心洞察</a>
 </div>
 
-<div class="chart-container">
-<h3 style="color:var(--text2);margin-bottom:16px">📊 论文方向分布</h3>
-<canvas id="dirChart"></canvas>
-</div>
-<script>
-new Chart(document.getElementById('dirChart'),{
-type:'bar',data:{
-labels:["VLA/\u5927\u6a21\u578b", "\u63a7\u5236\u64cd\u4f5c", "\u4eff\u771f\u5e73\u53f0", "\u611f\u77e5\u7406\u89e3", "\u51b3\u7b56\u89c4\u5212", "RL/\u4e16\u754c\u6a21\u578b", "\u4eba\u673a\u4ea4\u4e92"],
-datasets:[{label:'论文数',data:[5, 4, 3, 3, 2, 2, 1],backgroundColor:['#6366F1','#06B6D4','#10B981','#F59E0B','#F43F5E','#A855F7','#64748B'],borderRadius:6}]
-},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1E2537'},ticks:{color:'#94A3B8'}},y:{grid:{display:false},ticks:{color:'#E2E8F0'}}}}});
-</script>
+<h2 id="chart">📊 论文方向分布</h2>
+<div class="chart-box"><canvas id="dirChart"></canvas></div>
+<script>new Chart(document.getElementById('dirChart'),{type:'bar',data:{labels:["VLA/\u5927\u6a21\u578b", "\u63a7\u5236\u64cd\u4f5c"],datasets:[{data:[10, 2],backgroundColor:['#6366F1','#06B6D4','#10B981','#F59E0B','#F43F5E','#A855F7','#64748B'],borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1E2537'},ticks:{color:'#94A3B8'}},y:{grid:{display:false},ticks:{color:'#E2E8F0'}}}}});</script>
 
-<h2 id="papers">📄 arXiv 论文精选</h2>
+<h2 id="papers">📄 精选论文</h2>
 <div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05234" target="_blank">OLIVE: Online Low-Rank Incremental Learning for Efficient Adaptive Exoskeletons</a></h3>
-<p class="desc">arXiv:2606.05234v1 Announce Type: new 
-Abstract: Wearable exoskeleton systems hold promise for restoring mobility in individuals with physical impairments, yet most existing contro</p>
-<p class="meta">arXiv: 2606.05234</p>
+<h3><a href="https://arxiv.org/abs/2606.06491v1" target="_blank">TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies</a></h3>
+<p class="desc">Robot manipulation alternates between low-risk transit phases that call for fast execution and high-risk contact stages that demand slow, precise motion. Yet existing Vision-Langua</p>
+<p class="meta">📅 2026-06-04 · 🏷 VLA/大模型</p>
 </div>
 <div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05236" target="_blank">A New Quaternion-Joint Cable-Driven Redundant Manipulator Configuration and its Control Th</a></h3>
-<p class="desc">arXiv:2606.05236v1 Announce Type: new 
-Abstract: Robotic arms capable of traversing arbitrary spatial paths, especially in highly obstructed workspaces, are highly desired across s</p>
-<p class="meta">arXiv: 2606.05236</p>
+<h3><a href="https://arxiv.org/abs/2606.06245v1" target="_blank">MPCoT: Reward-Guided Multi-Path Latent Reasoning for Test-Time Scalable Vision-Language-Ac</a></h3>
+<p class="desc">Vision-Language-Action (VLA) policies remain brittle in long-horizon and high-uncertainty control, where one-pass action decoding provides limited inference-time deliberation. Expl</p>
+<p class="meta">📅 2026-06-04 · 🏷 VLA/大模型</p>
 </div>
 <div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05248" target="_blank">Inverse Manipulation through Symbolic Planning and Residual Operator Learning</a></h3>
-<p class="desc">arXiv:2606.05248v1 Announce Type: new 
-Abstract: Inverting a robotic task requires more than reversing symbolic state transitions or rewinding motor trajectories. In robot manipula</p>
-<p class="meta">arXiv: 2606.05248</p>
+<h3><a href="https://arxiv.org/abs/2606.06155v1" target="_blank">AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Afforda</a></h3>
+<p class="desc">Vision-Language-Action (VLA) models leverage the rich world knowledge of pretrained vision-language models (VLMs) to enable instruction-following robotic manipulation. However, the</p>
+<p class="meta">📅 2026-06-04 · 🏷 VLA/大模型</p>
 </div>
 <div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05372" target="_blank">Efficient Computation of Distance Functions for Navigation Vector Fields in Lie Groups</a></h3>
-<p class="desc">arXiv:2606.05372v1 Announce Type: new 
-Abstract: Vector-field-based methods are widely used for robot control and are often applied to the path-tracking problem. Some vector field </p>
-<p class="meta">arXiv: 2606.05372</p>
+<h3><a href="https://arxiv.org/abs/2606.06147v1" target="_blank">WorldFly: A World-Model-Based Vision-Language-Action Model for UAV Navigation</a></h3>
+<p class="desc">End-to-end Vision-Language-Action (VLA) models have shown promise in UAV navigation. However, existing approaches typically rely on historical observations to directly predict acti</p>
+<p class="meta">📅 2026-06-04 · 🏷 VLA/大模型</p>
 </div>
 <div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05395" target="_blank">VASO: Formally Verifiable Self-Evolving Skills for Physical AI Agents</a></h3>
-<p class="desc">arXiv:2606.05395v1 Announce Type: new 
-Abstract: Reusable robot skills are becoming the basic units through which embodied agents turn open-ended instructions into long-horizon phy</p>
-<p class="meta">arXiv: 2606.05395</p>
+<h3><a href="https://arxiv.org/abs/2606.06061v1" target="_blank">A Conversational Framework for Human-Robot Collaborative Manipulation with Distributed Gen</a></h3>
+<p class="desc">This paper presents a distributed conversational framework for human-robot collaborative manipulation that integrates local language and vision-language models (VLMs) with a Robot </p>
+<p class="meta">📅 2026-06-04 · 🏷 VLA/大模型</p>
 </div>
 <div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05407" target="_blank">MoDex: A Diffusion Policy for Sequential Multi-Object Dexterous Grasping</a></h3>
-<p class="desc">arXiv:2606.05407v1 Announce Type: new 
-Abstract: This work addresses sequentially grasping multiple objects with a single dexterous hand without releasing those already held. Most </p>
-<p class="meta">arXiv: 2606.05407</p>
+<h3><a href="https://arxiv.org/abs/2606.05979v1" target="_blank">World-Language-Action Model for Unified World Modeling, Language Reasoning, and Action Syn</a></h3>
+<p class="desc">We propose world-language-action (WLA) models as a new class of embodied foundation models. WLA takes textual instructions, images, and robot states as inputs to jointly predict te</p>
+<p class="meta">📅 2026-06-04 · 🏷 VLA/大模型</p>
 </div>
 <div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05422" target="_blank">Learning from Demonstrations over Riemannian Manifolds using Neural ODEs: An Extended Abst</a></h3>
-<p class="desc">arXiv:2606.05422v1 Announce Type: new 
-Abstract: Learning from demonstratins (LfD) is usually performed over Euclidean spaces, while the robot state, e.g. orientation, naturally ev</p>
-<p class="meta">arXiv: 2606.05422</p>
+<h3><a href="https://arxiv.org/abs/2606.05975v1" target="_blank">T-FunS3D: Task-Driven Hierarchical Open-Vocabulary 3D Functionality Segmentation</a></h3>
+<p class="desc">Open-vocabulary 3D functionality segmentation enables robots to localize functional object components in 3D scenes. It is a challenging task that requires spatial understanding and</p>
+<p class="meta">📅 2026-06-04 · 🏷 VLA/大模型</p>
 </div>
 <div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05437" target="_blank">Uncertainty-Aware Adaptive Sensor Fusion for Autonomous Navigation</a></h3>
-<p class="desc">arXiv:2606.05437v1 Announce Type: new 
-Abstract: This work introduces a hybrid deep learning approach integrated with an Unscented Kalman Filter (UKF) to enhance pose estimation ac</p>
-<p class="meta">arXiv: 2606.05437</p>
-</div>
-<div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05468" target="_blank">FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Prefere</a></h3>
-<p class="desc">arXiv:2606.05468v1 Announce Type: new 
-Abstract: Post-training Vision-Language-Action (VLA) models into policies that can be reliably deployed on real robots remains a major bottle</p>
-<p class="meta">arXiv: 2606.05468</p>
-</div>
-<div class="card paper-card">
-<h3><a href="https://arxiv.org/abs/2606.05501" target="_blank">Learning Contact Representation for Leg Odometry</a></h3>
-<p class="desc">arXiv:2606.05501v1 Announce Type: new 
-Abstract: The estimation of odometry in legged robots depends on the assumption that the velocity of the foot with respect to the world remai</p>
-<p class="meta">arXiv: 2606.05501</p>
+<h3><a href="https://arxiv.org/abs/2606.05773v1" target="_blank">PiL-World: A Chunk-Wise World Model for VLA Policy-in-the-Loop Evaluation</a></h3>
+<p class="desc">Vision-language-action (VLA) policies operate in a closed loop in real-world robot tasks: a robot observes the scene, executes an action chunk, and conditions its next decision on </p>
+<p class="meta">📅 2026-06-04 · 🏷 VLA/大模型</p>
 </div>
 
 
-<h2 id="github">🐙 GitHub 开源项目</h2>
+<h2 id="all">📋 全部检索结果 (12 篇)</h2>
+<details><summary>展开完整列表</summary>
+<table><tr><th>ID</th><th>标题</th><th>日期</th><th>方向</th></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06491v1' style='color:#818CF8'>2606.06491v1</a></td><td>TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06245v1' style='color:#818CF8'>2606.06245v1</a></td><td>MPCoT: Reward-Guided Multi-Path Latent Reasoning for Test-Time Scalabl</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06155v1' style='color:#818CF8'>2606.06155v1</a></td><td>AffordanceVLA: A Vision-Language-Action Model Empowering Action Genera</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06147v1' style='color:#818CF8'>2606.06147v1</a></td><td>WorldFly: A World-Model-Based Vision-Language-Action Model for UAV Nav</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06061v1' style='color:#818CF8'>2606.06061v1</a></td><td>A Conversational Framework for Human-Robot Collaborative Manipulation </td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05979v1' style='color:#818CF8'>2606.05979v1</a></td><td>World-Language-Action Model for Unified World Modeling, Language Reaso</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05975v1' style='color:#818CF8'>2606.05975v1</a></td><td>T-FunS3D: Task-Driven Hierarchical Open-Vocabulary 3D Functionality Se</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05773v1' style='color:#818CF8'>2606.05773v1</a></td><td>PiL-World: A Chunk-Wise World Model for VLA Policy-in-the-Loop Evaluat</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05758v1' style='color:#818CF8'>2606.05758v1</a></td><td>DRIFT: A Residual Flow Adapter for Decoding Continuous Outputs in Visi</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.05737v1' style='color:#818CF8'>2606.05737v1</a></td><td>Let It Be Simple: One-Step Action Generation for Vision-Language-Actio</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>VLA/大模型</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06493v1' style='color:#818CF8'>2606.06493v1</a></td><td>HANDOFF: Humanoid Agentic Task-Space Whole-Body Control via Distilled </td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>控制操作</td></tr>
+<tr><td style='color:#818CF8'><a href='https://arxiv.org/abs/2606.06323v1' style='color:#818CF8'>2606.06323v1</a></td><td>VOLT: Vision and Language Trajectory Segmentation for Faster-than-Demo</td><td style='color:#64748B'>2026-06-04</td><td style='color:#10B981'>控制操作</td></tr>
+
+</table></details>
+
+<h2 id="github">🐙 GitHub 本周热门</h2>
 <div class="card">
 <h3><span class="stars">⭐453</span> <a href="https://github.com/FluxVLA/FluxVLA" target="_blank">FluxVLA/FluxVLA</a></h3>
 <p class="desc">An all-in-one VLA engineering platform for embodied AI — from data to real-robot deployment.</p>
@@ -150,23 +147,14 @@ Abstract: The estimation of odometry in legged robots depends on the assumption 
 <h3><span class="stars">⭐16</span> <a href="https://github.com/avikde/vla-pipeline" target="_blank">avikde/vla-pipeline</a></h3>
 <p class="desc">Embodied reasoning hierarchical robotics pipeline demo</p>
 </div>
-<div class="card">
-<h3><span class="stars">⭐127</span> <a href="https://github.com/brysonjones/multitask_dit_policy" target="_blank">brysonjones/multitask_dit_policy</a></h3>
-<p class="desc">An open-source implementation of Multitask Diffusion Transformer (DiT) Policy for robot manipulation as seen on Boston D</p>
-</div>
-<div class="card">
-<h3><span class="stars">⭐31</span> <a href="https://github.com/Youqiang-Gui/SeedPolicy" target="_blank">Youqiang-Gui/SeedPolicy</a></h3>
-<p class="desc">Official implementation of "SeedPolicy: Horizon Scaling via Self-Evolving Diffusion Policy for Robot Manipulation".</p>
-</div>
 
 
 <h2 id="insights">💡 核心洞察</h2>
-<div class="insight"><h4>趋势1: VLA 工程化</h4><p>FluxVLA 等一站式平台兴起，从模型训练到部署的工具链正在标准化。</p></div>
-<div class="insight"><h4>趋势2: 轻量化 VLA</h4><p>950M 参数 FLOWER 对标几十亿参数大模型，降低落地门槛。</p></div>
-<div class="insight"><h4>趋势3: 人形机器人持续火热</h4><p>GMR、Roboto 等开源人形项目快速增长，硬件成本下降推动社区繁荣。</p></div>
-<div class="insight"><h4>趋势4: 仿真平台进化</h4><p>MuJoCo-Warp、Isaac Lab 等 GPU 加速仿真成为标配。</p></div>
-<div class="insight"><h4>下周关注</h4><p>PI05 训练结果评估 · Lerobot 社区更新 · arXiv cs.RO 论文</p></div>
+<div class="insight"><h4>🔹 VLA 进入精细化阶段</h4><p>TempoVLA（速度可控）、AffordanceVLA（可供性驱动）、MPCoT（多路径推理）表明 VLA 研究从"能不能动"转向"动得准、动得快"。</p></div>
+<div class="insight"><h4>🔹 人形机器人论文激增</h4><p>HANDOFF、MotionDisco 等全身控制论文增多，人形机器人的运动规划成为热点。</p></div>
+<div class="insight"><h4>🔹 世界模型 + VLA 融合</h4><p>WorldFly、World-Language-Action Model 等将世界模型整合进 VLA，提升导航和长期规划能力。</p></div>
+<div class="insight"><h4>🔹 下周关注</h4><p>PI05 全量微调评估 · ICRA 2026 论文更新 · HuggingFace lerobot 社区动态</p></div>
 
 </div>
-<footer>🤖 由 Hermes Agent 自动生成 · <a href="../archive/">历史归档</a> · 来源: arXiv / GitHub API</footer>
+<footer>🤖 由 Hermes Agent 按 embodied-ai-weekly skill 自动生成 · <a href="../archive/">历史归档</a> · 来源: arXiv API / GitHub API</footer>
 </body></html>
