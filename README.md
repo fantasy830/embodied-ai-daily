@@ -13,14 +13,12 @@
 
 ```
 .
-├── YYYY-MM-DD/            # 每日日报
-│   └── index.html         # 完整 HTML 报告
-├── YYYY-W{NN}/            # 历史周刊（已迁移为日报）
-│   └── index.html
-├── latest/                # 最新日报入口
-│   └── index.html         # 自动重定向到当天
+├── daily/                 # 每日日报
+│   └── YYYY-MM-DD/
+│       └── index.html
+├── YYYY-W{NN}/            # 历史周刊
+├── latest/                # → 重定向到最新
 ├── archive/               # 归档索引
-│   └── index.html         # 全部历史条目
 ├── .github/workflows/     # Actions 自动部署
 └── README.md
 ```
