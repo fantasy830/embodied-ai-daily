@@ -1,6 +1,8 @@
 name: Weekly Archive and Deploy
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: '0 0 * * 4'
   workflow_dispatch:
