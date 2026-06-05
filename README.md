@@ -1,24 +1,26 @@
-# 具身智能周报 (Embodied AI Weekly)
+# 具身智能日报 (Embodied AI Daily)
 
-[![Weekly Deploy](https://github.com/fantasy830/embodied-ai-weekly/actions/workflows/weekly-archive.yml/badge.svg)](https://github.com/fantasy830/embodied-ai-weekly/actions/workflows/weekly-archive.yml)
+[![Daily Deploy](https://github.com/fantasy830/embodied-ai-weekly/actions/workflows/weekly-archive.yml/badge.svg)](https://github.com/fantasy830/embodied-ai-weekly/actions/workflows/weekly-archive.yml)
 
-📊 每周自动追踪具身智能领域前沿动态，覆盖 arXiv 论文、GitHub 热门仓库。
+📄 每日自动追踪 arXiv 具身智能领域论文，按 7 个研究方向系统检索。
 
 ## 🌐 在线访问
 
-- **最新周报**: https://fantasy830.github.io/embodied-ai-weekly/latest/
+- **最新日报**: https://fantasy830.github.io/embodied-ai-weekly/latest/
 - **历史归档**: https://fantasy830.github.io/embodied-ai-weekly/archive/
 
 ## 📁 目录结构
 
 ```
 .
-├── YYYY-W{NN}/            # 每周周报（独立目录）
+├── YYYY-MM-DD/            # 每日日报
 │   └── index.html         # 完整 HTML 报告
-├── latest/                # 最新周报入口
-│   └── index.html         # 自动重定向到当前周
-├── archive/               # 历史归档
-│   └── index.html         # 归档索引页
+├── YYYY-W{NN}/            # 历史周刊（已迁移为日报）
+│   └── index.html
+├── latest/                # 最新日报入口
+│   └── index.html         # 自动重定向到当天
+├── archive/               # 归档索引
+│   └── index.html         # 全部历史条目
 ├── .github/workflows/     # Actions 自动部署
 └── README.md
 ```
@@ -26,26 +28,32 @@
 ## 🔄 自动化流程
 
 ```
-每周三 22:00 (CST)
+每天 22:00 (CST)
     ↓
-Hermes Agent 按 embodied-ai-weekly skill 执行:
-  ① 搜索 arXiv API (6方向, 过去7天论文)
-  ② 搜索 GitHub API (新增 & 热门仓库)
-  ③ 生成综合 HTML 报告 (暗色主题 + Chart.js 统计)
+Hermes Agent 执行:
+  ① arXiv API 检索前一天的论文（7方向 × max_results=20）
+  ② 客户端过滤 pubDate == 昨天
+  ③ 生成 HTML 日报（暗色主题 + Chart.js 统计）
   ④ git push → GitHub Actions 自动部署
     ↓
 https://fantasy830.github.io/embodied-ai-weekly/
 ```
 
-## 📊 数据来源
+## 📊 检索方向
 
-| 来源 | 说明 |
-|------|------|
-| arXiv API | cs.RO/cs.CV 等分类，按 6 个研究方向检索 |
-| GitHub API | 具身智能 / VLA / 机器人操控 相关仓库 |
+| 序号 | 方向 | 说明 |
+|------|------|------|
+| 1 | 具身感知与场景理解 | embodied perception, affordance |
+| 2 | 具身决策与规划 | robot planning, TAMP, LLM |
+| 3 | 具身控制与操作 | manipulation, diffusion policy |
+| 4 | 强化学习与世界模型 | world model, RL, sim-to-real |
+| 5 | 具身智能体与大模型 | VLA, vision-language-action |
+| 6 | 仿真数据与平台 | simulation, benchmark, dataset |
+| 7 | 人机交互与社会智能 | HRI, shared autonomy |
 
 ## 🛠 技术栈
 
+- **论文源**: arXiv API (cs.RO)
 - **Agent**: Hermes Agent + `embodied-ai-weekly` skill
 - **部署**: GitHub Actions + GitHub Pages
 - **前端**: 纯 HTML/CSS + Chart.js（暗色主题，自适应）
