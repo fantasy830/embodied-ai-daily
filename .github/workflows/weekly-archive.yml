@@ -1,0 +1,84 @@
+name: Weekly Archive and Deploy
+
+on:
+  schedule:
+    - cron: '0 0 * * 4'
+  workflow_dispatch:
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Get current date
+        id: date
+        run: |
+          echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+          echo "week=$(date +%Y-W%W)" >> $GITHUB_OUTPUT
+      
+      - name: Archive current latest
+        run: |
+          if [ -f "latest/index.html" ]; then
+            cp "latest/index.html" "archive/${{ steps.date.outputs.date }}.html"
+            echo "Archived to archive/${{ steps.date.outputs.date }}.html"
+          else
+            echo "No latest/index.html found, skipping archive"
+          fi
+      
+      - name: Update archive index
+        run: |
+          cat > archive/index.html << 'HEADER'
+          <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>周报归档</title>
+          <style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,'PingFang SC',sans-serif;background:#0B0E14;color:#e0e0e0;max-width:900px;margin:0 auto;padding:40px 20px}h1{color:#6366F1;margin-bottom:10px}p.sub{color:#64748B;margin-bottom:30px}.item{background:#141824;border:1px solid #1E2537;border-radius:8px;padding:16px;margin-bottom:12px}.item:hover{border-color:#6366F1}.item a{color:#818CF8;text-decoration:none;font-size:1.1em}.item .date{color:#64748B;font-size:.85em;margin-top:4px}footer{text-align:center;color:#64748B;margin-top:40px}</style></head><body>
+          <h1>📊 具身智能周报归档</h1><p class="sub"><a href="../latest/" style="color:#818CF8">→ 查看最新周报</a></p>
+          HEADER
+          echo '<div class="list">' >> archive/index.html
+          for file in $(ls -1 archive/*.html 2>/dev/null | grep -v "index.html" | sort -r); do
+            filename=$(basename "$file")
+            date_str=$(echo "$filename" | sed 's/.html$//')
+            echo "<div class=\"item\"><a href=\"./${filename}\">📅 ${date_str}</a><div class=\"date\">查看详情</div></div>" >> archive/index.html
+          done
+          echo '</div><footer>自动归档 · GitHub Actions</footer></body></html>' >> archive/index.html
+      
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add archive/
+          git diff --staged --quiet || git commit -m "Weekly archive: ${{ steps.date.outputs.date }}"
+          git push
+
+  deploy:
+    needs: archive
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
