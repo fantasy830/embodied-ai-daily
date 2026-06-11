@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>具身智能日报 · 2026-06-10</title>
+  <style>
+    :root {
+      --bg: #0B0E14; --bg2: #10141E; --card: #141824; --card2: #1A1F2E;
+      --border: #1E2537; --border2: #252D40;
+      --indigo: #6366F1; --indigo-l: #818CF8;
+      --cyan: #06B6D4; --cyan-l: #67E8F9;
+      --neon: #10B981; --neon-l: #6EE7B7;
+      --amber: #F59E0B; --amber-l: #FCD34D;
+      --rose: #F43F5E; --purple: #A855F7; --purple-l: #D8B4FE;
+      --text: #E2E8F0; --text-2: #94A3B8; --text-3: #64748B;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:-apple-system,'Segoe UI','PingFang SC','Hiragino Sans GB',sans-serif; line-height:1.6; }
+    a { color:var(--cyan-l); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
+    @keyframes pulse { 0%,100%{ opacity:.6; transform:scale(1) } 50%{ opacity:1; transform:scale(1.05) } }
+    @keyframes fadeUp { from{ opacity:0; transform:translateY(20px) } to{ opacity:1; transform:translateY(0) } }
+
+    .wrap { max-width:1100px; margin:0 auto; padding:0 20px; }
+
+    /* Hero */
+    header { position:relative; overflow:hidden; padding:60px 20px 40px; text-align:center; }
+    .hero-orb { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
+    .orb-1 { width:600px; height:600px; top:-200px; left:-150px; background:radial-gradient(circle,rgba(99,102,241,.18),transparent 70%); animation:pulse 8s ease-in-out infinite; }
+    .orb-2 { width:500px; height:500px; top:-100px; right:-100px; background:radial-gradient(circle,rgba(6,182,212,.15),transparent 70%); animation:pulse 6s ease-in-out infinite 2s; }
+    .vol-badge { display:inline-block; background:var(--card); border:1px solid var(--border); border-radius:20px; padding:6px 16px; font-size:13px; color:var(--text-2); margin-bottom:20px; }
+    h1 { font-size:2.2em; font-weight:700; background:linear-gradient(135deg,var(--cyan-l),var(--indigo-l),var(--purple-l)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:10px 0; }
+    .subtitle { color:var(--text-2); font-size:1.05em; margin:10px 0 20px; }
+    .date-row { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .date-chip { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:6px 14px; font-size:13px; color:var(--text-2); }
+    .date-chip span { color:var(--cyan-l); }
+
+    /* Stats */
+    .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:30px 0; }
+    .stat-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px 20px; text-align:center; transition:border-color .3s; }
+    .stat-card:hover { border-color:var(--indigo); }
+    .stat-val { font-size:2.4em; font-weight:700; }
+    .stat-label { color:var(--text-2); font-size:14px; margin:4px 0; }
+    .stat-badge { display:inline-block; font-size:12px; border-radius:10px; padding:2px 10px; margin-top:6px; }
+    .sv-i { color:var(--indigo-l); } .sv-n { color:var(--neon-l); } .sv-c { color:var(--cyan-l); }
+    .sb-up { background:rgba(99,102,241,.15); color:var(--indigo-l); }
+
+    /* Chart */
+    .chart-section { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; margin:30px 0; }
+    .chart-title { font-size:1.1em; font-weight:600; color:var(--text); margin-bottom:16px; }
+    .bar-list { display:flex; flex-direction:column; gap:10px; }
+    .bar-item { display:flex; align-items:center; gap:12px; }
+    .bar-label { width:160px; font-size:14px; color:var(--text-2); text-align:right; flex-shrink:0; }
+    .bar-track { flex:1; height:22px; background:var(--card2); border-radius:6px; overflow:hidden; }
+    .bar-fill { height:100%; border-radius:6px; transition:width 1s ease; }
+    .bf-i { background:linear-gradient(90deg,var(--indigo),var(--indigo-l)); }
+    .bf-c { background:linear-gradient(90deg,var(--cyan),var(--cyan-l)); }
+    .bf-n { background:linear-gradient(90deg,var(--neon),var(--neon-l)); }
+    .bf-a { background:linear-gradient(90deg,var(--amber),var(--amber-l)); }
+    .bf-r { background:linear-gradient(90deg,var(--rose),var(--rose)/*.7*/); }
+    .bf-p { background:linear-gradient(90deg,var(--purple),var(--purple-l)); }
+    .bar-count { width:36px; font-weight:700; color:var(--text); font-size:14px; text-align:left; }
+
+    /* Paper cards */
+    .dir-section { margin:24px 0; }
+    .dir-section-title { font-size:1.15em; font-weight:600; color:var(--text); padding:8px 0; border-bottom:1px solid var(--border); margin-bottom:12px; }
+    .dir-count-badge { font-size:12px; background:var(--card2); border-radius:10px; padding:2px 10px; color:var(--text-2); }
+    .paper-card { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:12px; animation:fadeUp .5s ease; }
+    .paper-card-top { height:4px; }
+    .bc-i { background:var(--indigo); } .bc-c { background:var(--cyan); } .bc-n { background:var(--neon); }
+    .bc-a { background:var(--amber); } .bc-r { background:var(--rose); } .bc-p { background:var(--purple); }
+    .bc-purple { background:var(--purple); }
+    .paper-card-body { padding:16px 20px; }
+    .paper-num { font-size:11px; color:var(--text-3); margin-bottom:4px; }
+    .paper-card-body h4 { font-size:1em; color:var(--text); margin:6px 0; line-height:1.4; }
+    .paper-meta { font-size:12px; color:var(--text-3); margin:4px 0; }
+    .paper-summary { font-size:13px; color:var(--text-2); margin:8px 0; line-height:1.5; }
+    .paper-dirs { margin:8px 0; }
+    .ptag { display:inline-block; font-size:11px; border-radius:8px; padding:2px 10px; margin:2px 4px 2px 0; }
+    .pt-i { background:rgba(99,102,241,.15); color:var(--indigo-l); }
+    .pt-c { background:rgba(6,182,212,.15); color:var(--cyan-l); }
+    .pt-n { background:rgba(16,185,129,.15); color:var(--neon-l); }
+    .pt-a { background:rgba(245,158,11,.15); color:var(--amber-l); }
+    .pt-r { background:rgba(244,63,94,.15); color:var(--rose); }
+    .pt-p { background:rgba(168,85,247,.15); color:var(--purple-l); }
+    .pt-purple { background:rgba(168,85,247,.15); color:var(--purple-l); }
+    .plink { display:inline-block; font-size:13px; color:var(--cyan-l); margin-top:6px; }
+
+    /* Full table */
+    .table-section { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin:30px 0; }
+    .table-header { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); }
+    .table-header h3 { font-size:1.05em; }
+    .table-badge { font-size:12px; background:var(--card2); border-radius:10px; padding:4px 12px; color:var(--text-2); }
+    .table-toggle { font-size:13px; color:var(--cyan-l); cursor:pointer; background:none; border:none; }
+    table { width:100%; border-collapse:collapse; }
+    th { text-align:left; padding:12px 16px; font-size:12px; color:var(--text-3); text-transform:uppercase; letter-spacing:.5px; border-bottom:1px solid var(--border); }
+    td { padding:10px 16px; font-size:13px; border-bottom:1px solid var(--border2); }
+    tr:hover { background:var(--card2); }
+    .td-title { color:var(--text); max-width:300px; }
+    .td-dir { white-space:nowrap; }
+    .td-val { color:var(--text-2); max-width:250px; font-size:12px; }
+    .td-link a { color:var(--cyan-l); font-size:12px; white-space:nowrap; }
+    .table-body { max-height:500px; overflow-y:auto; }
+    .table-body.expanded { max-height:none; }
+
+    /* Footer */
+    footer { text-align:center; padding:40px 20px; color:var(--text-3); font-size:13px; border-top:1px solid var(--border); margin-top:40px; }
+    footer strong { color:var(--text-2); }
+
+    @media (max-width:900px) { .stats-grid { grid-template-columns:repeat(2,1fr); } .bar-label { width:100px; font-size:12px; } }
+    @media (max-width:600px) { .stats-grid { grid-template-columns:1fr; } .bar-label { width:80px; font-size:11px; } .hide-m { display:none; } h1 { font-size:1.5em; } }
+  </style>
+</head>
+<body>
+<header>
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="vol-badge">🤖 Embodied AI Daily · 2026-06-10</div>
+  <h1>具身智能日报</h1>
+  <p class="subtitle">arXiv cs.RO 论文速览 · 2026年06月10日</p>
+  <div class="date-row">
+    <div class="date-chip">📅 日期 <span>2026-06-10</span></div>
+    <div class="date-chip">🔬 来源 <span>arXiv cs.RO</span></div>
+    <div class="date-chip">📊 覆盖 <span>6/7 方向</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-val sv-i">26</div>
+      <div class="stat-label">arXiv 收录论文</div>
+      <div class="stat-badge sb-up">6/7 方向覆盖</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val sv-c">8</div>
+      <div class="stat-label">VLA/大模型方向</div>
+      <div class="stat-badge sb-up">最热方向</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val sv-n">16</div>
+      <div class="stat-label">操控方向论文</div>
+      <div class="stat-badge sb-up">论文最多</div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-title">📊 各方向论文分布</div>
+    <div class="bar-list">
+      <div class="bar-item">
+      <span class="bar-label">👁️ 具身感知与场景理解</span>
+      <div class="bar-track"><div class="bar-fill bf-i" style="width:0.0%"></div></div>
+      <span class="bar-count">0</span>
+    </div>
+<div class="bar-item">
+      <span class="bar-label">🧠 具身决策与规划</span>
+      <div class="bar-track"><div class="bar-fill bf-p" style="width:25.0%"></div></div>
+      <span class="bar-count">4</span>
+    </div>
+<div class="bar-item">
+      <span class="bar-label">🦾 具身控制与操作</span>
+      <div class="bar-track"><div class="bar-fill bf-n" style="width:100.0%"></div></div>
+      <span class="bar-count">16</span>
+    </div>
+<div class="bar-item">
+      <span class="bar-label">🎯 强化学习与世界模型</span>
+      <div class="bar-track"><div class="bar-fill bf-a" style="width:37.5%"></div></div>
+      <span class="bar-count">6</span>
+    </div>
+<div class="bar-item">
+      <span class="bar-label">🤖 具身智能体与大模型</span>
+      <div class="bar-track"><div class="bar-fill bf-c" style="width:50.0%"></div></div>
+      <span class="bar-count">8</span>
+    </div>
+<div class="bar-item">
+      <span class="bar-label">🖥️ 仿真、数据与平台</span>
+      <div class="bar-track"><div class="bar-fill bf-r" style="width:75.0%"></div></div>
+      <span class="bar-count">12</span>
+    </div>
+<div class="bar-item">
+      <span class="bar-label">🤝 人机交互与社会智能</span>
+      <div class="bar-track"><div class="bar-fill bf-p" style="width:31.25%"></div></div>
+      <span class="bar-count">5</span>
+    </div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-title">📄 各方向精选论文</div>
+    <div class="dir-section"><div class="dir-section-title">🤖 具身智能体与大模型 <span class="dir-count-badge">8篇</span></div>
+<div class="paper-card">
+      <div class="paper-card-top bc-c"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12403 · cs.RO · 2026-06-10</div>
+        <h4>World Pilot: Steering Vision-Language-Action Models with World-Action Priors</h4>
+        <div class="paper-meta">Zefu Lin, Rongxu Cui, Junjia Xu et al.</div>
+        <p class="paper-summary">Vision-Language-Action (VLA) models inherit semantic grounding from large-scale pretraining and perform competently across in-distribution manipulation tasks. This grounding, however, is built on static image-text pairs, whereas manipulation is a con</p>
+        <div class="paper-dirs"><span class="ptag pt-c">具身控制与操作, 具身智能体与大模型</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12403" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-c"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12396 · cs.CV · 2026-06-10</div>
+        <h4>VLGA: Vision-Language-Geometry-Action Models for Autonomous Driving</h4>
+        <div class="paper-meta">Jin Yao, Dhruva Dixith Kurra, Tom Lampo et al.</div>
+        <p class="paper-summary">Vision-language-action (VLA) models can describe scenes and reason about them in language, yet still struggle to ground their actions in the dense 3D world around them. Existing approaches either inject features from a frozen 3D foundation model with</p>
+        <div class="paper-dirs"><span class="ptag pt-c">具身智能体与大模型</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12396" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-c"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12366 · cs.RO · 2026-06-10</div>
+        <h4>APT: Action Expert Pretraining Improves Instruction Generalization of Vision-Language-Action Policies</h4>
+        <div class="paper-meta">Kechun Xu, Zhenjie Zhu, Anzhe Chen et al.</div>
+        <p class="paper-summary">Vision-Language-Action (VLA) models that couple pretrained Vision-Language Models (VLMs) with continuous action experts have achieved strong manipulation performance, yet generalization to out-of-distribution (OOD) language instructions remains poor.</p>
+        <div class="paper-dirs"><span class="ptag pt-c">具身智能体与大模型</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12366" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+</div>
+<div class="dir-section"><div class="dir-section-title">🦾 具身控制与操作 <span class="dir-count-badge">16篇</span></div>
+<div class="paper-card">
+      <div class="paper-card-top bc-n"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12406 · cs.RO · 2026-06-10</div>
+        <h4>FACTR 2: Learning External Force Sensing for Commodity Robot Arms Improves Policy Learning</h4>
+        <div class="paper-meta">Steven Oh, Jason Jingzhou Liu, Tony Tao et al.</div>
+        <p class="paper-summary">Contact-rich manipulation requires force sensitivity, but many robot arms lack dedicated force sensors due to their high cost. We present Neural External Torque Estimation (NEXT), a data-driven method that estimates external joint torques without nee</p>
+        <div class="paper-dirs"><span class="ptag pt-n">具身控制与操作</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12406" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-n"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12403 · cs.RO · 2026-06-10</div>
+        <h4>World Pilot: Steering Vision-Language-Action Models with World-Action Priors</h4>
+        <div class="paper-meta">Zefu Lin, Rongxu Cui, Junjia Xu et al.</div>
+        <p class="paper-summary">Vision-Language-Action (VLA) models inherit semantic grounding from large-scale pretraining and perform competently across in-distribution manipulation tasks. This grounding, however, is built on static image-text pairs, whereas manipulation is a con</p>
+        <div class="paper-dirs"><span class="ptag pt-n">具身控制与操作, 具身智能体与大模型</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12403" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-n"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12402 · cs.RO · 2026-06-10</div>
+        <h4>DIRECT: When and Where Should You Allocate Test-Time Compute in Embodied Planners?</h4>
+        <div class="paper-meta">Jadelynn Dao, Milan Ganai, Yasmina Abukhadra et al.</div>
+        <p class="paper-summary">Vision-Language Models (VLMs) are increasingly deployed as high-level planners for embodied agents, with an emerging strategy of scaling test-time compute to improve capability. However, we observe that doing so increases latency, token usage, and FL</p>
+        <div class="paper-dirs"><span class="ptag pt-n">具身决策与规划, 具身控制与操作</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12402" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+</div>
+<div class="dir-section"><div class="dir-section-title">🎯 强化学习与世界模型 <span class="dir-count-badge">6篇</span></div>
+<div class="paper-card">
+      <div class="paper-card-top bc-a"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12372 · cs.RO · 2026-06-10</div>
+        <h4>UniIntervene: Agentic Intervention for Efficient Real-World Reinforcement Learning</h4>
+        <div class="paper-meta">Haoyuan Deng, Yitong Gao, Yudong Lin et al.</div>
+        <p class="paper-summary">Human-in-the-loop reinforcement learning (HiL-RL) has emerged as an effective paradigm for real-world robotic manipulation, enabling online policy improvement with human guidance. However, current HiL-RL frameworks remain intervention-intensive, rely</p>
+        <div class="paper-dirs"><span class="ptag pt-a">具身控制与操作, 强化学习与世界模型</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12372" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-a"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12042 · cs.RO · 2026-06-10</div>
+        <h4>KinematicRL: A Sim-to-Real Reinforcement Learning Framework For Social Navigation With Kinodynamic Feasibility</h4>
+        <div class="paper-meta">Zhiming Xu, Haodong Yang, Chengju Liu et al.</div>
+        <p class="paper-summary">Deep Reinforcement Learning (DRL) has shown promise for social navigation, yet its real-world deployment remains hindered by a persistent sim-to-real gap arising from simplified first-order dynamics and context-specific human state estimation pipelin</p>
+        <div class="paper-dirs"><span class="ptag pt-a">强化学习与世界模型, 仿真、数据与平台</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12042" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-a"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.11891 · cs.RO · 2026-06-10</div>
+        <h4>Critic Architecture Matters: Dual vs. Unified Critics for Humanoid Loco-Manipulation</h4>
+        <div class="paper-meta">Mehmet Turan Yardımcı</div>
+        <p class="paper-summary">Multi-objective reinforcement learning for humanoid robots must coordinate locomotion and manipulation within a single policy. A natural design choice is whether to use a single (unified) critic that estimates the combined value of all objectives, or</p>
+        <div class="paper-dirs"><span class="ptag pt-a">具身控制与操作, 强化学习与世界模型, 仿真、数据与平台</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.11891" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+</div>
+<div class="dir-section"><div class="dir-section-title">🧠 具身决策与规划 <span class="dir-count-badge">4篇</span></div>
+<div class="paper-card">
+      <div class="paper-card-top bc-p"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12402 · cs.RO · 2026-06-10</div>
+        <h4>DIRECT: When and Where Should You Allocate Test-Time Compute in Embodied Planners?</h4>
+        <div class="paper-meta">Jadelynn Dao, Milan Ganai, Yasmina Abukhadra et al.</div>
+        <p class="paper-summary">Vision-Language Models (VLMs) are increasingly deployed as high-level planners for embodied agents, with an emerging strategy of scaling test-time compute to improve capability. However, we observe that doing so increases latency, token usage, and FL</p>
+        <div class="paper-dirs"><span class="ptag pt-p">具身决策与规划, 具身控制与操作</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12402" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-p"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12070 · cs.RO · 2026-06-10</div>
+        <h4>Fibration Trees: A Unified Approach to Multi-Robot Motion Planning</h4>
+        <div class="paper-meta">Andreas Orthey, Florian T. Pokorny, Lydia E. Kavraki</div>
+        <p class="paper-summary">State space projections and decompositions have emerged as powerful tools to tackle the curse of dimensionality in high-dimensional, multi-robot motion planning problems. However, existing methods lack a unified framework which seamlessly handles com</p>
+        <div class="paper-dirs"><span class="ptag pt-p">具身决策与规划</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12070" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-p"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12028 · cs.RO · 2026-06-10</div>
+        <h4>VICX: Generalizable Robot Manipulation via Video Generation and In-Context Operator Network</h4>
+        <div class="paper-meta">Song Chen, Linyan Xiang, Ying Zhou et al.</div>
+        <p class="paper-summary">Generalizable robot manipulation requires not only task-level reasoning over unseen scenes, but also reliable grounding of visual plans into embodiment-specific execution. To bridge this gap, we propose VICX (Video generation and In-Context eXecution</p>
+        <div class="paper-dirs"><span class="ptag pt-p">具身决策与规划, 具身控制与操作</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12028" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+</div>
+<div class="dir-section"><div class="dir-section-title">🖥️ 仿真、数据与平台 <span class="dir-count-badge">12篇</span></div>
+<div class="paper-card">
+      <div class="paper-card-top bc-r"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12349 · cs.RO · 2026-06-10</div>
+        <h4>Traceable Virtual Sea Trials in the Marine Robotics Unity Simulator for Manoeuvring Assessment of Unmanned Surface Vehicles</h4>
+        <div class="paper-meta">Paria Rezayan</div>
+        <p class="paper-summary">Accurate identification of hydrodynamic derivatives is essential for control and navigation of Unmanned Surface Vehicles (USVs), but high-fidelity manoeuvring data from physical sea trials are constrained by cost and safety. Turning Circle (TC) and Z</p>
+        <div class="paper-dirs"><span class="ptag pt-r">仿真、数据与平台</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12349" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-r"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12339 · cs.SD · 2026-06-10</div>
+        <h4>Fast-SDE: Efficient Single-Microphone Sound Source Distance Estimation in Reverberant Environments</h4>
+        <div class="paper-meta">Jiang Wang, Runwu Shi, Yaozhong Kang et al.</div>
+        <p class="paper-summary">Sound source distance estimation (SDE) is a critical capability in human-robot interaction. An inappropriate interaction distance not only reduces the reliability of speech acquisition and understanding, but also compromises the naturalness and comfo</p>
+        <div class="paper-dirs"><span class="ptag pt-r">仿真、数据与平台, 人机交互与社会智能</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12339" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-r"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12299 · cs.RO · 2026-06-10</div>
+        <h4>Learning What to Say to Your VLA: Mostly Harmless Vision Language Action Model Steering</h4>
+        <div class="paper-meta">Hyun Joe Jeong, Gokul Swamy, Andrea Bajcsy</div>
+        <p class="paper-summary">Vision-Language-Action (VLA) models provide a natural language interface to robot control, but the mapping from language to behavior is often brittle and unintuitive: semantically similar instructions can induce drastically different behaviors, while</p>
+        <div class="paper-dirs"><span class="ptag pt-r">具身智能体与大模型, 仿真、数据与平台, 人机交互与社会智能</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12299" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+</div>
+<div class="dir-section"><div class="dir-section-title">🤝 人机交互与社会智能 <span class="dir-count-badge">5篇</span></div>
+<div class="paper-card">
+      <div class="paper-card-top bc-purple"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12374 · cs.RO · 2026-06-10</div>
+        <h4>Semantically-Aware Diver Activity Recognition Framework for Effective Underwater Multi-Human-Robot Collaboration</h4>
+        <div class="paper-meta">Sadman Sakib Enan, Junaed Sattar</div>
+        <p class="paper-summary">Effective multi-human-robot collaboration is essential for expanding human-led operations in the challenging and high-risk underwater environment. For autonomous underwater vehicles (AUVs) to become true teammates, they must be able to comprehend the</p>
+        <div class="paper-dirs"><span class="ptag pt-purple">人机交互与社会智能</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12374" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-purple"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12339 · cs.SD · 2026-06-10</div>
+        <h4>Fast-SDE: Efficient Single-Microphone Sound Source Distance Estimation in Reverberant Environments</h4>
+        <div class="paper-meta">Jiang Wang, Runwu Shi, Yaozhong Kang et al.</div>
+        <p class="paper-summary">Sound source distance estimation (SDE) is a critical capability in human-robot interaction. An inappropriate interaction distance not only reduces the reliability of speech acquisition and understanding, but also compromises the naturalness and comfo</p>
+        <div class="paper-dirs"><span class="ptag pt-purple">仿真、数据与平台, 人机交互与社会智能</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12339" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+<div class="paper-card">
+      <div class="paper-card-top bc-purple"></div>
+      <div class="paper-card-body">
+        <div class="paper-num">2606.12299 · cs.RO · 2026-06-10</div>
+        <h4>Learning What to Say to Your VLA: Mostly Harmless Vision Language Action Model Steering</h4>
+        <div class="paper-meta">Hyun Joe Jeong, Gokul Swamy, Andrea Bajcsy</div>
+        <p class="paper-summary">Vision-Language-Action (VLA) models provide a natural language interface to robot control, but the mapping from language to behavior is often brittle and unintuitive: semantically similar instructions can induce drastically different behaviors, while</p>
+        <div class="paper-dirs"><span class="ptag pt-purple">具身智能体与大模型, 仿真、数据与平台, 人机交互与社会智能</span></div>
+        <a class="plink" href="https://arxiv.org/abs/2606.12299" target="_blank">📄 arXiv</a>
+      </div>
+    </div>
+</div>
+  </div>
+
+  <div class="table-section">
+    <div class="table-header">
+      <h3>📋 全部论文索引</h3>
+      <span class="table-badge">共 26 篇</span>
+    </div>
+    <div class="table-body" id="paperTable">
+      <table>
+        <thead>
+          <tr><th>#</th><th>论文标题</th><th class="hide-m">方向</th><th class="hide-m">摘要</th><th>链接</th></tr>
+        </thead>
+        <tbody><tr>
+        <td>1</td>
+        <td class="td-title">FACTR 2: Learning External Force Sensing for Commodity Robot...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作</span></td>
+        <td class="td-val hide-m">Contact-rich manipulation requires force sensitivity, but many robot arms lack d...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12406" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>2</td>
+        <td class="td-title">World Pilot: Steering Vision-Language-Action Models with Wor...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 具身智能体与大模型</span></td>
+        <td class="td-val hide-m">Vision-Language-Action (VLA) models inherit semantic grounding from large-scale ...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12403" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>3</td>
+        <td class="td-title">DIRECT: When and Where Should You Allocate Test-Time Compute...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-p">具身决策与规划, 具身控制与操作</span></td>
+        <td class="td-val hide-m">Vision-Language Models (VLMs) are increasingly deployed as high-level planners f...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12402" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>4</td>
+        <td class="td-title">VLGA: Vision-Language-Geometry-Action Models for Autonomous ...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-c">具身智能体与大模型</span></td>
+        <td class="td-val hide-m">Vision-language-action (VLA) models can describe scenes and reason about them in...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12396" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>5</td>
+        <td class="td-title">Semantically-Aware Diver Activity Recognition Framework for ...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-purple">人机交互与社会智能</span></td>
+        <td class="td-val hide-m">Effective multi-human-robot collaboration is essential for expanding human-led o...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12374" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>6</td>
+        <td class="td-title">UniIntervene: Agentic Intervention for Efficient Real-World ...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 强化学习与世界模型</span></td>
+        <td class="td-val hide-m">Human-in-the-loop reinforcement learning (HiL-RL) has emerged as an effective pa...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12372" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>7</td>
+        <td class="td-title">APT: Action Expert Pretraining Improves Instruction Generali...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-c">具身智能体与大模型</span></td>
+        <td class="td-val hide-m">Vision-Language-Action (VLA) models that couple pretrained Vision-Language Model...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12366" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>8</td>
+        <td class="td-title">CHORUS: Decentralized Multi-Embodiment Collaboration with On...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-c">具身智能体与大模型</span></td>
+        <td class="td-val hide-m">Multi-robot collaboration allows robots to efficiently take on a wide range of t...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12352" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>9</td>
+        <td class="td-title">Traceable Virtual Sea Trials in the Marine Robotics Unity Si...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-r">仿真、数据与平台</span></td>
+        <td class="td-val hide-m">Accurate identification of hydrodynamic derivatives is essential for control and...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12349" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>10</td>
+        <td class="td-title">Fast-SDE: Efficient Single-Microphone Sound Source Distance ...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-r">仿真、数据与平台, 人机交互与社会智能</span></td>
+        <td class="td-val hide-m">Sound source distance estimation (SDE) is a critical capability in human-robot i...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12339" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>11</td>
+        <td class="td-title">Fourier Features Let Agents Learn High Precision Policies wi...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作</span></td>
+        <td class="td-val hide-m">High-precision robotic manipulation requires fine-grained spatial reasoning that...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12334" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>12</td>
+        <td class="td-title">Learning What to Say to Your VLA: Mostly Harmless Vision Lan...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-c">具身智能体与大模型, 仿真、数据与平台, 人机交互与社会智能</span></td>
+        <td class="td-val hide-m">Vision-Language-Action (VLA) models provide a natural language interface to robo...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12299" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>13</td>
+        <td class="td-title">Making Foresight Actionable: Repurposing Representation Alig...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作</span></td>
+        <td class="td-val hide-m">World Action Models (WAMs) offer a promising route for robot manipulation by usi...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12217" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>14</td>
+        <td class="td-title">Intelligent Automation for Embodied Benchmark Construction: ...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 仿真、数据与平台</span></td>
+        <td class="td-val hide-m">Embodied intelligence now spans navigation, household assistance, manipulation, ...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12207" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>15</td>
+        <td class="td-title">Bridging the Morphology Gap: Adapting VLA Models to Dexterou...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 具身智能体与大模型, 仿真、数据与平台</span></td>
+        <td class="td-val hide-m">Vision-Language-Action (VLA) models have demonstrated remarkable zero-shot gener...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12109" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>16</td>
+        <td class="td-title">DAM-VLA: Decoupled Asynchronous Multimodal Vision Language A...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-c">具身智能体与大模型</span></td>
+        <td class="td-val hide-m">Vision-language-action (VLA) models inherit a shared synchronous clock from visi...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12105" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>17</td>
+        <td class="td-title">Fibration Trees: A Unified Approach to Multi-Robot Motion Pl...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-p">具身决策与规划</span></td>
+        <td class="td-val hide-m">State space projections and decompositions have emerged as powerful tools to tac...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12070" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>18</td>
+        <td class="td-title">KinematicRL: A Sim-to-Real Reinforcement Learning Framework ...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-a">强化学习与世界模型, 仿真、数据与平台</span></td>
+        <td class="td-val hide-m">Deep Reinforcement Learning (DRL) has shown promise for social navigation, yet i...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12042" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>19</td>
+        <td class="td-title">VICX: Generalizable Robot Manipulation via Video Generation ...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-p">具身决策与规划, 具身控制与操作</span></td>
+        <td class="td-val hide-m">Generalizable robot manipulation requires not only task-level reasoning over uns...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.12028" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>20</td>
+        <td class="td-title">DuoBench: A Reproducible Benchmark for Bimanual Manipulation...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 仿真、数据与平台, 人机交互与社会智能</span></td>
+        <td class="td-val hide-m">Bimanual robot systems substantially expand manipulation capabilities, but coord...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.11901" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>21</td>
+        <td class="td-title">Critic Architecture Matters: Dual vs. Unified Critics for Hu...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 强化学习与世界模型, 仿真、数据与平台</span></td>
+        <td class="td-val hide-m">Multi-objective reinforcement learning for humanoid robots must coordinate locom...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.11891" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>22</td>
+        <td class="td-title">Human-Guided Co-Manipulation of Carbon Fiber Plies</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 人机交互与社会智能</span></td>
+        <td class="td-val hide-m">The handling of flexible materials is a difficult task to fully automate due to ...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.11818" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>23</td>
+        <td class="td-title">Blind Dexterous Grasping via Real2Sim2Real Tactile Policy Le...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 强化学习与世界模型, 仿真、数据与平台</span></td>
+        <td class="td-val hide-m">Blind grasping with a dexterous hand is a crucial manipulation capability. Never...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.11767" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>24</td>
+        <td class="td-title">TacCoRL: Integrating Tactile Feedback into VLA via Simulatio...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 强化学习与世界模型, 具身智能体与大模型, 仿真、数据与平台</span></td>
+        <td class="td-val hide-m">Vision-language-action (VLA) models provide strong visual, language, and action ...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.11743" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>25</td>
+        <td class="td-title">LUCID: Learning Embodiment-Agnostic Intent Models from Unstr...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-n">具身控制与操作, 仿真、数据与平台</span></td>
+        <td class="td-val hide-m">The most widely-adopted robot learning pipelines today learn skills from robot d...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.11628" target="_blank">→ arXiv</a></td>
+      </tr>
+<tr>
+        <td>26</td>
+        <td class="td-title">Learning Object Manipulation from Scratch via Contrastive In...</td>
+        <td class="td-dir hide-m"><span class="ptag pt-p">具身决策与规划, 具身控制与操作, 强化学习与世界模型, 仿真、数据与平台</span></td>
+        <td class="td-val hide-m">Contrastive Reinforcement Learning (CRL) has seen recent success in a wide varie...</td>
+        <td class="td-link"><a href="https://arxiv.org/abs/2606.11525" target="_blank">→ arXiv</a></td>
+      </tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><strong>🤖 具身智能日报</strong> · 2026-06-10 · 数据来源：arXiv cs.RO</p>
+  <p style="font-size:12px;margin-top:8px;">本报告由 AI Agent 自动生成 · 论文覆盖 6/7 方向</p>
+</footer>
+
+<script>
+document.querySelectorAll('.bar-fill').forEach(el=>{ const w=el.style.width; el.style.width='0'; requestAnimationFrame(()=>setTimeout(()=>el.style.width=w,50)); });
+</script>
+</body>
+</html>
